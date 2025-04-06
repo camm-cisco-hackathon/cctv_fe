@@ -8,7 +8,8 @@ const Dashboard = () => {
     <div className="flex min-h-screen bg-[#F8FDFF] text-[#232f34]">
 
       <Sidebar />
-      <main className="flex-1 p-5">
+      <main className="flex-1 pt-16 px-6">  {/* pt-16 = 약 64px */}
+
         <Header />
 
         {/* 환영 메시지 박스 */}

@@ -1,11 +1,9 @@
-// src/components/Header.jsx
 import React from 'react';
 
 const Header = () => {
   return (
-    <header className="flex justify-between items-center mb-5">
-      <h1 className="text-xl font-semibold text-[#232f34]">대시보드</h1>
-      <div className="text-[#232f34]">홍길동님</div>
+    <header className="fixed top-0 left-52 right-0 bg-white border-b border-[#E0F7FF] px-5 py-3 flex items-center justify-end z-40">
+      <div className="text-[#232f34] font-medium">홍길동님</div>
     </header>
   );
 };
