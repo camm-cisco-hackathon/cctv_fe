@@ -1,27 +1,34 @@
 import React from 'react';
-import Sidebar from '../components/Sidebar';
-import Header from '../components/Header';
+import Header from '../components/Header'; // ✅ Header는 유지
 
 const Dashboard = () => {
   return (
-    <div className="flex min-h-screen bg-[#F8FDFF] text-[#232f34]">
-      <Sidebar />
-      <main className="flex-1 pt-16 px-6">
-        <Header />
+    <div className="min-h-screen bg-[#F8FDFF] text-[#232f34] px-6 pt-20">
+      <Header />
 
-        {/* 환영 메시지 박스 */}
-        <section className="bg-white rounded-lg shadow-md p-6 mb-8">
-          <h2 className="text-[#232f34] text-xl font-semibold mb-1">
-            안녕하세요, 홍길동님
-          </h2>
-          <p className="text-sm text-[#5d6c72]">
-            <span className="text-[#00AEEF] font-semibold">Visi-On</span>이 오늘도 여러분의 집을 지켜드려요.
-          </p>
-        </section>
+      {/* 환영 메시지 박스 */}
+      <section className="bg-white rounded-lg shadow-md p-6 mb-8">
+        <h2 className="text-[#232f34] text-xl font-semibold mb-1">
+          안녕하세요, 홍길동님
+        </h2>
+        <p className="text-sm text-[#5d6c72]">
+          <span className="text-[#00AEEF] font-semibold">Visi-On</span>이 오늘도 여러분의 집을 지켜드려요.
+        </p>
+      </section>
 
-        {/* 즐겨찾기 섹션 */}
-        <DashboardSection title="즐겨찾기" locations={['1202호 앞', '101동 엘리베이터 1층기', '101동 공용 현관', '101동 놀이터', '101동 놀이터', '101동 놀이터', '101동 놀이터']} />
-      </main>
+      {/* 즐겨찾기 섹션 */}
+      <DashboardSection
+        title="즐겨찾기"
+        locations={[
+          '1202호 앞',
+          '101동 엘리베이터 1층기',
+          '101동 공용 현관',
+          '101동 놀이터',
+          '101동 놀이터',
+          '101동 놀이터',
+          '101동 놀이터',
+        ]}
+      />
     </div>
   );
 };
