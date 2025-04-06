@@ -1,5 +1,9 @@
+// src/App.jsx
+import React from 'react';
+import Dashboard from './pages/Dashboard';
+
 function App() {
-  return <div className="text-blue-500">asdf</div>;
+  return <Dashboard />;
 }
 
 export default App;
