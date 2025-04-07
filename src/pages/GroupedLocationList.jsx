@@ -1,7 +1,8 @@
+// ✅ GroupedLocationList.jsx
 import React from 'react';
+import Header from '../components/Header';
 
 const GroupedLocationList = () => {
-  // 예시 데이터 (그룹별 장소)
   const data = {
     즐겨찾기: ['101동 놀이터', '1202호 앞', '101동 놀이터', '101동 엘레베이터 1호기'],
     '101동': ['101동 놀이터', '1202호 앞', '101동 놀이터', '101동 엘레베이터 1호기'],
@@ -9,10 +10,13 @@ const GroupedLocationList = () => {
   };
 
   return (
-    <div className="min-h-screen bg-[#F8FDFF] text-[#232f34] px-6 pt-20 pb-10">
-      {Object.entries(data).map(([group, locations], idx) => (
-        <LocationSection key={idx} title={group} locations={locations} />
-      ))}
+    <div className="text-[#232f34]">
+      <Header />
+      <div className="min-h-screen bg-[#F8FDFF] px-6 pt-20 pb-10">
+        {Object.entries(data).map(([group, locations], idx) => (
+          <LocationSection key={idx} title={group} locations={locations} />
+        ))}
+      </div>
     </div>
   );
 };
