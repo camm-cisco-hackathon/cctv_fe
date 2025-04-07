@@ -1,10 +1,12 @@
 import React, { useState } from 'react';
 import Sidebar from './components/Sidebar';
+import Header from './components/Header';
 import Dashboard from './pages/Dashboard';
 import GroupedLocationList from './pages/GroupedLocationList';
+import IssuePage from './pages/IssuePage'; // ✅ 추가
 
 function App() {
-  const [currentPage, setCurrentPage] = useState('dashboard'); // ✅ 기본값: 내 장소
+  const [currentPage, setCurrentPage] = useState('dashboard');
 
   const renderContent = () => {
     switch (currentPage) {
@@ -12,6 +14,8 @@ function App() {
         return <Dashboard />;
       case 'favorites':
         return <GroupedLocationList />;
+      case 'issue':
+        return <IssuePage />;
       default:
         return <Dashboard />;
     }
@@ -19,9 +23,11 @@ function App() {
 
   return (
     <div className="flex">
-      {/* ✅ currentPage도 전달 */}
       <Sidebar onSelect={(page) => setCurrentPage(page)} currentPage={currentPage} />
-      <main className="flex-1">{renderContent()}</main>
+      <div className="flex-1">
+        <Header />
+        <main>{renderContent()}</main> {/* ✅ 여백 제거 */}
+      </div>
     </div>
   );
 }

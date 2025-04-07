@@ -1,60 +1,59 @@
+// ✅ 대시보드 이미지 기반 구성 (프레임 구조 반영)
 import React from 'react';
-import Header from '../components/Header'; // ✅ Header는 유지
+import Header from '../components/Header';
 
 const Dashboard = () => {
   return (
-    <div className="min-h-screen bg-[#F8FDFF] text-[#232f34] px-6 pt-20">
+    <div className="min-h-screen bg-[#F8FDFF] text-[#232f34] pt-20 pl-6 pr-6">
       <Header />
 
-      {/* 환영 메시지 박스 */}
+      {/* 메인 비디오/이미지 프리뷰 영역 */}
       <section className="bg-white rounded-lg shadow-md p-6 mb-8">
-        <h2 className="text-[#232f34] text-xl font-semibold mb-1">
-          안녕하세요, 홍길동님
-        </h2>
-        <p className="text-sm text-[#5d6c72]">
-          <span className="text-[#00AEEF] font-semibold">Visi-On</span>이 오늘도 여러분의 집을 지켜드려요.
-        </p>
+        <div className="flex flex-col lg:flex-row gap-4">
+          {/* 왼쪽 큰 이미지 */}
+          <div className="flex-1">
+            <img
+              src="/images/main.jpg" // 실제 이미지 경로로 교체
+              alt="방문자 주요 장면"
+              className="rounded-lg w-full object-cover h-[300px]"
+            />
+            <div className="mt-3">
+              <div className="font-semibold">1202호 앞(우리 집)</div>
+              <div className="text-sm text-[#5d6c72]">2025.03.27. 16:00</div>
+            </div>
+          </div>
+
+          {/* 오른쪽 작은 이미지 리스트 */}
+          <div className="w-full lg:w-48 flex lg:flex-col gap-2">
+            {["/images/thumb1.jpg", "/images/thumb2.jpg", "/images/thumb3.jpg"].map((src, idx) => (
+              <img
+                key={idx}
+                src={src}
+                alt={`thumbnail-${idx}`}
+                className="rounded-lg object-cover w-full h-[90px] cursor-pointer"
+              />
+            ))}
+          </div>
+        </div>
       </section>
 
-      {/* 즐겨찾기 섹션 */}
-      <DashboardSection
-        title="즐겨찾기"
-        locations={[
-          '1202호 앞',
-          '101동 엘리베이터 1층기',
-          '101동 공용 현관',
-          '101동 놀이터',
-          '101동 놀이터',
-          '101동 놀이터',
-          '101동 놀이터',
-        ]}
-      />
-    </div>
-  );
-};
+      {/* 다른 장소 보기 텍스트 */}
+      <div className="text-sm font-medium mb-2">다른 장소 보기</div>
 
-const DashboardSection = ({ title, locations }) => {
-  return (
-    <>
-      <div className="flex items-center mb-3">
-        <button className="text-[#232f34] font-semibold text-base flex items-center cursor-pointer bg-transparent border-none">
-          {title} <span className="ml-1">▼</span>
-        </button>
-      </div>
-
+      {/* 장소 카드 목록 */}
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4 mb-8">
-        {locations.map((location, idx) => (
+        {["1202호 앞", "101동 12층", "101동 공용 현관", "101동 엘리베이터"].map((loc, idx) => (
           <div
             key={idx}
             className="bg-white border border-[#E0F7FF] rounded-lg p-4 flex items-center shadow hover:shadow-lg hover:border-[#00AEEF] transition"
           >
             <span className="text-[#00AEEF] text-xl mr-3">📍</span>
-            <span>{location}</span>
+            <span>{loc}</span>
             <span className="ml-auto text-gray-400">❯</span>
           </div>
         ))}
       </div>
-    </>
+    </div>
   );
 };
 
