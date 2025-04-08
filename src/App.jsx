@@ -1,11 +1,10 @@
-import React from 'react';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import Sidebar from './components/Sidebar';
-import Header from './components/Header';
-import Dashboard from './pages/Dashboard';
-import GroupedLocationList from './pages/GroupedLocationList';
-import IssuePage from './pages/IssuePage';
-import LandingPage from './pages/LandingPage';
+import React from "react";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import Sidebar from "./components/Sidebar";
+import Dashboard from "./pages/Dashboard";
+import GroupedLocationList from "./pages/GroupedLocationList";
+import IssuePage from "./pages/IssuePage";
+import LandingPage from "./pages/LandingPage";
 
 function App() {
   return (
@@ -46,7 +45,6 @@ const WithLayout = ({ children }) => (
   <div className="flex">
     <Sidebar />
     <div className="flex-1">
-      <Header />
       <main>{children}</main>
     </div>
   </div>

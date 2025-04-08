@@ -1,45 +1,43 @@
-import React from 'react';
-import Header from '../components/Header';
+import React from "react";
 
 const GroupedLocationList = () => {
   return (
     <div className="min-h-screen bg-[#F8FDFF] text-[#232f34]">
-      <Header />
-
-      <main className="pt-20 px-6"> {/* ✅ Header 영역 확보 */}
+      <main className="pt-20 px-6">
+        {/* ✅ Header 영역 확보 */}
         {/* 환영 메시지 */}
         <section className="mb-8">
-          <h2 className="text-[#232f34] text-xl font-semibold mb-1">안녕하세요, 홍길동님</h2>
+          <h2 className="text-[#232f34] text-xl font-semibold mb-1">
+            안녕하세요, 홍길동님
+          </h2>
           <p className="text-sm text-[#5d6c72]">
-            <span className="text-[#00AEEF] font-semibold">Visi-On</span>이 오늘도 여러분의 집을 지켜드려요.
+            <span className="text-[#00AEEF] font-semibold">Visi-On</span>이
+            오늘도 여러분의 집을 지켜드려요.
           </p>
         </section>
-
         {/* 즐겨찾기 섹션 */}
         <Section
           title="즐겨찾기"
           locations={[
-            '1202호 앞',
-            '101동 엘리베이터 1층기',
-            '101동 공용 현관',
-            '101동 놀이터',
-            '101동 놀이터',
-            '101동 놀이터',
-            '101동 놀이터',
+            "1202호 앞",
+            "101동 엘리베이터 1층기",
+            "101동 공용 현관",
+            "101동 놀이터",
+            "101동 놀이터",
+            "101동 놀이터",
+            "101동 놀이터",
           ]}
         />
-
         {/* 내 장소 섹션 */}
         <Section
           title="내 장소"
           locations={[
-            '1202호 앞',
-            '101동 12층',
-            '101동 공용 현관',
-            '101동 엘리베이터',
+            "1202호 앞",
+            "101동 12층",
+            "101동 공용 현관",
+            "101동 엘리베이터",
           ]}
         />
-
         {/* 이슈 섹션 */}
         <div className="mb-8">
           <div className="flex items-center mb-3">
