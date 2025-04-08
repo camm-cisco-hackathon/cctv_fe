@@ -1,26 +1,24 @@
 // src/pages/IssuePage.jsx
-import React from 'react';
-import Header from '../components/Header';
+import React from "react";
 
 const IssuePage = () => {
   const issueData = [
     {
       id: 1,
-      location: '1202호 앞(우리 집)',
-      date: '2025.03.25. 22:03',
-      message: '우리 집(1202호) 앞에 누군가 방문했어요.',
+      location: "1202호 앞(우리 집)",
+      date: "2025.03.25. 22:03",
+      message: "우리 집(1202호) 앞에 누군가 방문했어요.",
     },
     {
       id: 2,
-      location: '101동 공용 현관',
-      date: '2025.03.26. 09:15',
-      message: '공용 현관에 사람이 감지되었어요.',
+      location: "101동 공용 현관",
+      date: "2025.03.26. 09:15",
+      message: "공용 현관에 사람이 감지되었어요.",
     },
   ];
 
   return (
     <div className="min-h-screen bg-[#F8FDFF] text-[#232f34] pt-20 pl-6 pr-6">
-      <Header />
       <h2 className="text-xl font-semibold mb-6">이슈 목록</h2>
 
       <div className="space-y-4">
