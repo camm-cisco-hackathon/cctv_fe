@@ -6,7 +6,8 @@ import GroupedLocationList from './pages/GroupedLocationList';
 import IssuePage from './pages/IssuePage'; // ✅ 추가
 
 function App() {
-  const [currentPage, setCurrentPage] = useState('dashboard');
+  const [currentPage, setCurrentPage] = useState('favorites');
+
 
   const renderContent = () => {
     switch (currentPage) {
