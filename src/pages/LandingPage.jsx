@@ -18,14 +18,14 @@ export default function LandingPage() {
             </span>
           </div>
           {/* 로그인 / 회원가입 */}
-          <div className="flex space-x-4">
+          {/* <div className="flex space-x-4">
             <button className="px-5 py-2 text-sm md:text-base text-[#00AEEF] hover:bg-[#D9F4FD] rounded transition">
               로그인
             </button>
             <button className="px-5 py-2 text-sm md:text-base bg-[#00AEEF] text-white hover:bg-[#0095CF] rounded transition">
               회원가입
             </button>
-          </div>
+          </div> */}
         </div>
       </nav>
 
@@ -50,9 +50,9 @@ export default function LandingPage() {
               >
                 시작하기
               </button>
-              <button className="px-8 py-3 border border-[#00AEEF] text-[#00AEEF] rounded-lg hover:bg-[#D9F4FD] font-medium">
+              {/* <button className="px-8 py-3 border border-[#00AEEF] text-[#00AEEF] rounded-lg hover:bg-[#D9F4FD] font-medium">
                 자세히 알아보기
-              </button>
+              </button> */}
             </div>
           </div>
 

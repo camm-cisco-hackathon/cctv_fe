@@ -9,7 +9,12 @@ const Sidebar = () => {
   return (
     <aside className="w-52 bg-white border-r border-[#E0F7FF] flex flex-col">
       {/* 로고 */}
-      <div className="text-[#00AEEF] font-bold text-2xl px-5 py-3 border-b border-[#E0F7FF]">
+      <div
+        className="text-[#00AEEF] font-bold text-2xl px-5 py-3 border-b border-[#E0F7FF] cursor-pointer"
+        onClick={() => {
+          navigation("/");
+        }}
+      >
         VISI:ON
       </div>
 
