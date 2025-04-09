@@ -17,9 +17,9 @@ const Sidebar = () => {
       <div className="mt-5 space-y-1">
         <MenuItem
           label="대시보드"
-          active={location.pathname == "/home"}
+          active={location.pathname == "/dashboard"}
           onClick={() => {
-            navigation("/home");
+            navigation("/dashboard");
           }}
         />
         <MenuItem

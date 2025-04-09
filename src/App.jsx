@@ -2,7 +2,7 @@ import React from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Sidebar from "./components/Sidebar";
 import Dashboard from "./pages/Dashboard";
-import Home from "./pages/Home";
+import LocationView from "./pages/LocationView";
 import GroupedLocationList from "./pages/GroupedLocationList";
 import IssuePage from "./pages/IssuePage";
 import LandingPage from "./pages/LandingPage";
@@ -15,18 +15,18 @@ function App() {
       <Routes>
         <Route path="/" element={<LandingPage />} />
         <Route
-          path="/dashboard"
+          path="/location-view"
           element={
             <WithLayout>
-              <Dashboard />
+              <LocationView />
             </WithLayout>
           }
         />
         <Route
-          path="/home"
+          path="/dashboard"
           element={
             <WithLayout>
-              <Home />
+              <Dashboard />
             </WithLayout>
           }
         />

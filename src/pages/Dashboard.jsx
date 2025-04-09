@@ -1,145 +1,179 @@
-import React, { useState } from "react";
-import Viewer from "../components/Viewer";
-import { MdViewComfy, MdViewAgenda } from "react-icons/md";
+import React, { useRef } from "react";
+import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
+import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
+import { StaticDatePicker } from "@mui/x-date-pickers/StaticDatePicker";
+import dayjs from "dayjs";
+import { FaUserCircle } from "react-icons/fa";
+import { MdNotificationsActive } from "react-icons/md";
+import { FiSearch } from "react-icons/fi";
+import { IoIosArrowBack, IoIosArrowForward } from "react-icons/io";
+import apartmentImg from "../images/apartment.jpg";
 
 const Dashboard = () => {
-  const [selectedLocation, setSelectedLocation] =
-    useState("1202호 앞(우리 집)");
-  const [viewMode, setViewMode] = useState("list");
-  const [visibleCount, setVisibleCount] = useState(1); // 처음에는 1개만 보이기
+  const scrollRef = useRef(null);
 
-  const handleLocationClick = (location) => {
-    setSelectedLocation(location);
+  const scrollLeft = () => {
+    scrollRef.current.scrollBy({ left: -300, behavior: "smooth" });
   };
 
-  const handleViewChange = (mode) => {
-    setViewMode(mode);
-    if (mode === "list") setVisibleCount(2);
-    else if (mode === "grid") setVisibleCount(4);
+  const scrollRight = () => {
+    scrollRef.current.scrollBy({ left: 300, behavior: "smooth" });
   };
-
-  const cameraCount = [1, 2, 3, 4];
-  const otherLocation = [
-    "1202호 앞",
-    "101동 12층",
-    "101동 공용 현관",
-    "101동 엘리베이터",
-  ];
 
   return (
-    <div className="flex min-h-screen bg-[#F8FDFF] text-[#232f34]">
-      {/* 왼쪽 사이드바 */}
-      <aside className="w-[260px] bg-[#E6F8FC] text-[#232f34] p-4 space-y-4 border-r border-[#C5EAF5]">
-        <h2 className="text-lg font-bold mb-4">장소 목록</h2>
-        {["1202호 앞", "101동 12층", "101동 공용 현관", "101동 엘리베이터"].map(
-          (loc, idx) => (
-            <div
-              key={idx}
-              className={`p-3 rounded-md cursor-pointer transition ${
-                loc === selectedLocation
-                  ? "bg-white text-[#00AEEF] shadow font-semibold"
-                  : "hover:bg-[#D0EDF7]"
-              }`}
-              onClick={() => handleLocationClick(loc)}
-            >
-              {loc}
-            </div>
-          )
-        )}
-      </aside>
+    <div className="min-h-screen bg-[#F8FDFF] text-[#232f34] p-6 space-y-6">
+      {/* 상단 검색 및 알림 */}
+      <header className="flex justify-between items-center mb-4">
+        <div className="relative w-full max-w-md">
+          <FiSearch className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400" />
+          <input
+            type="text"
+            placeholder="검색어를 입력하세요"
+            className="w-full pl-10 pr-4 py-2 rounded-lg border border-gray-300 focus:outline-none"
+          />
+        </div>
+        <FaUserCircle className="text-3xl text-[#00AEEF]" />
+      </header>
 
-      {/* 오른쪽 콘텐츠 */}
-      <main className="flex-1 p-6 space-y-6">
-        {/* 뷰모드 아이콘 */}
-        <div className="flex justify-end gap-2">
-          <button
-            onClick={() => handleViewChange("list")}
-            className={`p-2 rounded hover:bg-[#D9F4FD] transition ${
-              viewMode === "list" ? "bg-[#00AEEF] text-white" : ""
-            }`}
-          >
-            <MdViewAgenda size={20} />
-          </button>
-          <button
-            onClick={() => handleViewChange("grid")}
-            className={`p-2 rounded hover:bg-[#D9F4FD] transition ${
-              viewMode === "grid" ? "bg-[#00AEEF] text-white" : ""
-            }`}
-          >
-            <MdViewComfy size={20} />
+      {/* 상단 카드 */}
+      <section className="bg-[#D9F4FD] p-4 rounded-xl flex items-center gap-4">
+        <div className="flex items-center justify-center w-14 h-14 bg-white rounded-xl shadow">
+          <MdNotificationsActive className="text-2xl text-[#00AEEF]" />
+        </div>
+        <div className="flex flex-col justify-center">
+          <h2 className="text-base font-semibold mb-2 text-[#232f34]">
+            새로운 이슈가 등록되었어요!
+          </h2>
+          <button className="w-fit px-3 py-1.5 text-sm bg-[#00AEEF] text-white rounded hover:bg-[#0095CF]">
+            이슈 확인하기
           </button>
         </div>
+      </section>
 
-        {/* 콘텐츠 영역 */}
-        {viewMode === "grid" ? (
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-            {cameraCount.slice(0, visibleCount).map((i) => (
-              <div
-                key={i}
-                className="bg-white rounded-lg shadow-md overflow-hidden"
-              >
-                <div className="bg-[#00AEEF] text-white text-sm font-semibold px-4 py-2">
-                  {selectedLocation} - 카메라 {i}
-                </div>
-                <div className="relative bg-black aspect-[16/9] flex items-center justify-center">
-                  <Viewer
-                    wsUrl="ws://localhost:52049/ws"
-                    streamOnMount={false}
+      {/* 콘텐츠 구역 */}
+      <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+        {/* 왼쪽 그룹 */}
+        <div className="lg:col-span-2 bg-white p-4 rounded-xl shadow space-y-6">
+          {/* 최근 이슈 */}
+          <div>
+            <h3 className="text-base font-semibold mb-2">최근 이슈</h3>
+            <section className="grid grid-cols-1 md:grid-cols-3 gap-4">
+              {["CCTV 설치 요청", "조명 고장 신고", "출입문 오작동"].map(
+                (title, index) => {
+                  const color = ["#00AEEF", "#facc15", "#f472b6"][index];
+                  const width = ["w-3/4", "w-1/2", "w-1/6"][index];
+                  return (
+                    <div
+                      key={index}
+                      className="bg-[#F8FDFF] p-4 rounded-lg shadow"
+                    >
+                      <p className="font-medium mb-2">{title}</p>
+                      <div className="w-full h-2 bg-gray-200 rounded-full">
+                        <div
+                          className={`h-full rounded-full ${width}`}
+                          style={{ backgroundColor: color }}
+                        />
+                      </div>
+                    </div>
+                  );
+                }
+              )}
+            </section>
+          </div>
+
+          {/* 장소 목록 */}
+          <div className="relative">
+            <h3 className="text-base font-semibold mb-2">장소 목록</h3>
+
+            {/* 왼쪽 화살표 */}
+            <button
+              onClick={scrollLeft}
+              className="absolute left-2 top-1/2 transform -translate-y-1/2 z-10"
+            >
+              <IoIosArrowBack
+                size={36}
+                className="text-white drop-shadow-[0_2px_4px_rgba(0,0,0,0.6)] hover:brightness-125 transition"
+              />
+            </button>
+
+            {/* 오른쪽 화살표 */}
+            <button
+              onClick={scrollRight}
+              className="absolute right-2 top-1/2 transform -translate-y-1/2 z-10"
+            >
+              <IoIosArrowForward
+                size={36}
+                className="text-white drop-shadow-[0_2px_4px_rgba(0,0,0,0.6)] hover:brightness-125 transition"
+              />
+            </button>
+
+            <section
+              ref={scrollRef}
+              className="flex gap-4 overflow-x-auto pb-2 px-0"
+              style={{
+                scrollbarWidth: "none",
+                msOverflowStyle: "none",
+              }}
+            >
+              {[1, 2, 3, 4, 5].map((i) => (
+                <div
+                  key={i}
+                  className="min-w-[240px] h-[297px] bg-[#F8FDFF] rounded-lg shadow overflow-hidden flex flex-col"
+                >
+                  <img
+                    src={apartmentImg}
+                    alt={`장소 ${i}`}
+                    className="w-full h-44 object-cover"
                   />
+                  <div className="p-4 flex-1">
+                    <h4 className="font-semibold mb-1">현관 카메라 {i}</h4>
+                    <p className="text-sm text-gray-600">
+                      최근 감지: {i * 2}분 전
+                    </p>
+                  </div>
                 </div>
-                <div className="flex items-center justify-between px-4 py-2 text-sm text-gray-500 bg-[#F8FDFF]">
-                  <div>{new Date().toLocaleString("ko-KR")}</div>
-                  <span className="bg-[#E0F7FF] px-2 py-0.5 rounded-full text-xs font-semibold text-[#00AEEF]">
-                    LIVE
-                  </span>
-                </div>
-              </div>
-            ))}
+              ))}
+            </section>
           </div>
-        ) : (
-          <div className="flex flex-col gap-4">
-            {cameraCount.slice(0, visibleCount).map((i) => (
-              <div
-                key={i}
-                className="bg-white rounded-lg shadow-md overflow-hidden"
-              >
-                <div className="bg-[#00AEEF] text-white text-sm font-semibold px-4 py-2">
-                  {selectedLocation} - 카메라 {i}
-                </div>
-                <div className="relative bg-black aspect-[16/9] flex items-center justify-center">
-                  <Viewer
-                    wsUrl="ws://localhost:52049/ws"
-                    streamOnMount={false}
+        </div>
+
+        {/* 오른쪽 그룹 */}
+        <div className="bg-white p-4 rounded-xl shadow space-y-6">
+          <div>
+            <h3 className="text-base font-semibold mb-2">내 프로필</h3>
+            <section className="p-4 rounded-lg shadow flex items-center gap-4 h-[70px] bg-[#F8FDFF]">
+              <FaUserCircle className="text-5xl text-[#00AEEF]" />
+              <div>
+                <p className="font-medium">홍길동</p>
+                <p className="text-sm text-gray-500">관리자</p>
+              </div>
+            </section>
+          </div>
+
+          <div>
+            <h3 className="text-base font-semibold mb-2">이번 주 일정</h3>
+            <section className="p-4 rounded-lg shadow h-[300px] flex flex-col bg-[#F8FDFF]">
+              <div className="flex-grow overflow-hidden">
+                <LocalizationProvider dateAdapter={AdapterDayjs}>
+                  <StaticDatePicker
+                    displayStaticWrapperAs="desktop"
+                    defaultValue={dayjs()}
+                    readOnly
+                    slotProps={{
+                      layout: {
+                        sx: {
+                          height: "100%",
+                          ".MuiPickersCalendarHeader-root": { mb: 0.5 },
+                          ".MuiDayCalendar-weekContainer": { mb: 0.5 },
+                        },
+                      },
+                    }}
                   />
-                </div>
-                <div className="flex items-center justify-between px-4 py-2 text-sm text-gray-500 bg-[#F8FDFF]">
-                  <div>{new Date().toLocaleString("ko-KR")}</div>
-                  <span className="bg-[#E0F7FF] px-2 py-0.5 rounded-full text-xs font-semibold text-[#00AEEF]">
-                    LIVE
-                  </span>
-                </div>
+                </LocalizationProvider>
               </div>
-            ))}
+            </section>
           </div>
-        )}
-      </main>
-
-      {/* 다른 장소 보기 텍스트 */}
-      <div className="text-sm font-medium mb-2">다른 장소 보기</div>
-
-      {/* 장소 카드 목록 */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4 mb-8">
-        {otherLocation.map((loc, idx) => (
-          <div
-            key={idx}
-            className="bg-white border border-[#E0F7FF] rounded-lg p-4 flex items-center shadow hover:shadow-lg hover:border-[#00AEEF] transition cursor-pointer"
-            onClick={() => handleLocationClick(loc)}
-          >
-            <span className="text-[#00AEEF] text-xl mr-3">📍</span>
-            <span>{loc}</span>
-            <span className="ml-auto text-gray-400">❯</span>
-          </div>
-        ))}
+        </div>
       </div>
     </div>
   );
