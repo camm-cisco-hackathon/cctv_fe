@@ -1,7 +1,17 @@
-// ✅ 대시보드 이미지 기반 구성 (프레임 구조 반영)
-import React from "react";
+// src/pages/Dashboard.jsx
+import React, { useState } from "react";
+import Viewer from "../components/Viewer";
 
 const Dashboard = () => {
+  const [showViewer, setShowViewer] = useState(false);
+  const [selectedLocation, setSelectedLocation] =
+    useState("1202호 앞(우리 집)");
+
+  const handleLocationClick = (location) => {
+    setSelectedLocation(location);
+    setShowViewer(true);
+  };
+
   return (
     <div className="min-h-screen w-full bg-[#F8FDFF] text-[#232f34] pt-5 pl-6 pr-6">
       {/* 메인 비디오/이미지 프리뷰 영역 */}
@@ -9,17 +19,13 @@ const Dashboard = () => {
         <div className="w-3/4 flex flex-col lg:flex-row gap-4">
           {/* 왼쪽 큰 영상 */}
           <div className="flex-1">
-            <video
-              src="/videos/main.mp4"
-              controls
-              autoPlay
-              muted
-              loop
-              className="rounded-lg w-full object-cover "
-            />
+            <Viewer wsUrl="ws://localhost:52049/ws" streamOnMount={false} />
+
             <div className="mt-3">
-              <div className="font-semibold">1202호 앞(우리 집)</div>
-              <div className="text-sm text-[#5d6c72]">2025.03.27. 16:00</div>
+              <div className="font-semibold">{selectedLocation}</div>
+              <div className="text-sm text-[#5d6c72]">
+                {new Date().toLocaleString("ko-KR")}
+              </div>
             </div>
           </div>
 
@@ -52,7 +58,8 @@ const Dashboard = () => {
           (loc, idx) => (
             <div
               key={idx}
-              className="bg-white border border-[#E0F7FF] rounded-lg p-4 flex items-center shadow hover:shadow-lg hover:border-[#00AEEF] transition"
+              className="bg-white border border-[#E0F7FF] rounded-lg p-4 flex items-center shadow hover:shadow-lg hover:border-[#00AEEF] transition cursor-pointer"
+              onClick={() => handleLocationClick(loc)}
             >
               <span className="text-[#00AEEF] text-xl mr-3">📍</span>
               <span>{loc}</span>
