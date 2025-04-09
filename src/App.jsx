@@ -7,7 +7,7 @@ import IssuePage from "./pages/IssuePage";
 import LandingPage from "./pages/LandingPage";
 
 import Sender from "./pages/Sender";
-import Viewer from "./components/Viewer";
+
 
 function App() {
   return (
@@ -46,14 +46,7 @@ function App() {
             </WithLayout>
           }
         />
-        <Route
-          path="/viewer"
-          element={
-            <WithLayout>
-              <Viewer />
-            </WithLayout>
-          }
-        />
+        
       </Routes>
     </Router>
   );
