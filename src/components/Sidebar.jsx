@@ -38,14 +38,6 @@ const Sidebar = () => {
           onClick={() => navigation("/admin")}
         />
       </div>
-
-      {/* 여백 차지 */}
-      <div className="flex-grow" />
-
-      {/* 하단 메뉴 */}
-      <div className="space-y-1">
-        <MenuItem label="설정" />
-      </div>
     </aside>
   );
 };

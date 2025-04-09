@@ -71,18 +71,18 @@ const Dashboard = () => {
 
   return (
     <div className="min-h-screen bg-[#F8FDFF] text-[#232f34] p-6 space-y-6">
+      <h2 className="text-[#232f34] text-xl font-semibold mb-1">
+        홍길동님, 환영합니다.
+      </h2>
+      <p className="text-sm text-[#5d6c72] mb-8">
+        <span className="text-[#00AEEF] font-semibold">VISI:ON</span>과 함께 더
+        쉽게 내 장소의 변화를 감지해보세요.
+      </p>
+
       {/* 상단 검색 및 알림 */}
-      <header className="flex justify-between items-center mb-4">
-        <div className="relative w-full max-w-md">
-          <FiSearch className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400" />
-          <input
-            type="text"
-            placeholder="검색어를 입력하세요"
-            className="w-full pl-10 pr-4 py-2 rounded-lg border border-gray-300 focus:outline-none"
-          />
-        </div>
+      {/* <header className="flex items-center mb-4 justify-end">
         <FaUserCircle className="text-3xl text-[#00AEEF]" />
-      </header>
+      </header> */}
 
       {/* 상단 카드 */}
       <section className="bg-[#D9F4FD] p-4 rounded-xl flex items-center gap-4">
@@ -91,7 +91,7 @@ const Dashboard = () => {
         </div>
         <div className="flex flex-col justify-center">
           <h2 className="text-base font-semibold mb-2 text-[#232f34]">
-            새로운 이슈가 등록되었어요!
+            내 장소에서 발생한 새로운 이슈를 확인해보세요.
           </h2>
           <button className="w-fit px-3 py-1.5 text-sm bg-[#00AEEF] text-white rounded hover:bg-[#0095CF]">
             이슈 확인하기
@@ -103,8 +103,17 @@ const Dashboard = () => {
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
         {/* 왼쪽 그룹 */}
         <div className="lg:col-span-2 bg-white p-4 rounded-xl shadow space-y-6">
+          <div className="relative w-full max-w-md">
+            <FiSearch className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400" />
+            <input
+              type="text"
+              placeholder="검색어를 입력하세요"
+              className="w-full pl-10 pr-4 py-2 rounded-lg border border-gray-300 focus:outline-none"
+            />
+          </div>
+
           {/* 최근 이슈 */}
-          <div>
+          {/* <div>
             <h3 className="text-base font-semibold mb-2">최근 이슈</h3>
             <section className="grid grid-cols-1 md:grid-cols-3 gap-4">
               {["CCTV 설치 요청", "조명 고장 신고", "출입문 오작동"].map(
@@ -129,7 +138,7 @@ const Dashboard = () => {
                 }
               )}
             </section>
-          </div>
+          </div> */}
 
           {/* 장소 목록 */}
           <div className="relative">
@@ -196,7 +205,7 @@ const Dashboard = () => {
               <FaUserCircle className="text-5xl text-[#00AEEF]" />
               <div>
                 <p className="font-medium">홍길동</p>
-                <p className="text-sm text-gray-500">관리자</p>
+                <p className="text-sm text-gray-500">노원 센트럴파크뷰 2차</p>
               </div>
             </section>
           </div>

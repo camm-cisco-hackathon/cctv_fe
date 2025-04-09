@@ -70,55 +70,93 @@ const GroupedLocationList = () => {
 
   return (
     <div className="min-h-screen bg-[#F8FDFF] text-[#232f34]">
-      <main className="p-10">
+      <main className="p-10 flex flex-col">
         {/* 소개 문구 */}
-        <section className="mb-8">
-          <h2 className="text-[#232f34] text-xl font-semibold mb-1">
-            나의 공간
-          </h2>
-          <p className="text-sm text-[#5d6c72]">
-            <span className="text-[#00AEEF] font-semibold">VISI:ON</span>의
-            비식별화 처리를 통해 내 공간에 더욱 쉽게 엑세스하고, <br />내
-            공간에서 발생하는 이슈들을 빠르게 확인해보세요.
-          </p>
-        </section>
+        <h2 className="text-[#232f34] text-xl font-semibold mb-1">내 장소</h2>
+        <p className="text-sm text-[#5d6c72] mb-8">
+          <span className="text-[#00AEEF] font-semibold">VISI:ON</span>의
+          비식별화 처리를 통해 내 공간에 더욱 쉽게 엑세스하고, <br />내 장소에서
+          발생하는 이슈들을 빠르게 확인해보세요.
+        </p>
 
         {/* 이슈 */}
-        <div className="mb-8">
-          <div className="flex items-center mb-3">
-            <h3 className="text-[#232f34] font-semibold text-base flex items-center bg-transparent border-none">
-              이슈
-            </h3>
-          </div>
-          <div className="p-4 grid grid-cols-1 gap-4">
-            {myAlert.map((alert, idx) => (
-              <div
-                key={idx}
-                className="bg-white border border-[#ffe066] border-l-4 rounded-lg p-4 shadow cursor-pointer hover:bg-[#fffdf0]"
-              >
-                <div className="font-medium mb-1 flex items-center">
-                  <span className="mr-2 text-[#ffcc00]">⚠️</span>
-                  <span>
-                    나의 공간(
-                    <span className="text-[#00AEEF]">{alert.location}</span>)에
-                    누군가 침입했어요.
-                  </span>
+        <section className="bg-white p-4 rounded-xl items-center shadow mb-8">
+          <div className="mb-8">
+            <div className="flex items-center">
+              <h3 className="text-[#232f34] font-semibold text-base flex items-center bg-transparent border-none">
+                이슈
+              </h3>
+            </div>
+            <div className="p-4 grid grid-cols-1 gap-4">
+              {myAlert.map((alert, idx) => (
+                <div
+                  key={idx}
+                  className="bg-white border border-[#ffe066] border-l-4 rounded-lg p-4 shadow cursor-pointer hover:bg-[#fffdf0]"
+                >
+                  <div className="font-medium mb-1 flex items-center">
+                    <span className="mr-2 text-[#ffcc00]">⚠️</span>
+                    <span>
+                      나의 공간(
+                      <span className="text-[#00AEEF]">{alert.location}</span>
+                      )에 누군가 침입했어요.
+                    </span>
+                  </div>
+                  <div className="text-sm text-[#5d6c72]">{alert.time}</div>
                 </div>
-                <div className="text-sm text-[#5d6c72]">{alert.time}</div>
-              </div>
-            ))}
+              ))}
+            </div>
           </div>
-        </div>
+          {/* 즐겨찾기 */}
+          <div className="mb-8">
+            <h3 className="text-[#232f34] font-semibold text-base flex items-center bg-transparent border-none">
+              즐겨찾기
+            </h3>
+            <div className="p-4 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4">
+              {myLocations
+                .filter((loc) => loc.favorite)
+                .map((loc, idx) => (
+                  <div
+                    key={idx}
+                    onClick={() => {
+                      Navigate("/location-view");
+                    }}
+                    className="w-full aspect-[1/1] bg-[#F8FDFF] hover:bg-blue-50 rounded-lg shadow overflow-hidden flex flex-col"
+                  >
+                    <img
+                      src={loc.image}
+                      alt={loc.name}
+                      className="bg-blue-300 w-full aspect-[16/9] object-cover"
+                    />
+                    <div className="p-4 flex-1 flex flex-col justify-between">
+                      <div>
+                        <h4 className="font-semibold mb-1">{loc.name}</h4>
+                        <p className="text-sm text-gray-600">{loc.admin}</p>
+                      </div>
+                      <span className="flex justify-end mt-2">
+                        <button
+                          className="cursor-pointer"
+                          onClick={() => toggleFavorite(idx)}
+                        >
+                          {loc.favorite ? (
+                            <FaStar className="text-yellow-500" />
+                          ) : (
+                            <FaRegStar className="text-gray-400" />
+                          )}
+                        </button>
+                      </span>
+                    </div>
+                  </div>
+                ))}
+            </div>
+          </div>
 
-        {/* 즐겨찾기 */}
-        <section className="mb-8">
-          <h3 className="text-[#232f34] font-semibold text-base flex items-center bg-transparent border-none">
-            즐겨찾기
-          </h3>
-          <div className="p-4 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4">
-            {myLocations
-              .filter((loc) => loc.favorite)
-              .map((loc, idx) => (
+          {/* 전체 장소 */}
+          <section className="mb-8">
+            <h3 className="text-[#232f34] font-semibold text-base flex items-center bg-transparent border-none">
+              전체 장소
+            </h3>
+            <div className="p-4 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4">
+              {myLocations.map((loc, idx) => (
                 <div
                   key={idx}
                   onClick={() => {
@@ -151,49 +189,8 @@ const GroupedLocationList = () => {
                   </div>
                 </div>
               ))}
-          </div>
-        </section>
-
-        {/* 전체 장소 */}
-        <section className="mb-8">
-          <h3 className="text-[#232f34] font-semibold text-base flex items-center bg-transparent border-none">
-            전체 장소
-          </h3>
-          <div className="p-4 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4">
-            {myLocations.map((loc, idx) => (
-              <div
-                key={idx}
-                onClick={() => {
-                  Navigate("/location-view");
-                }}
-                className="w-full aspect-[1/1] bg-[#F8FDFF] hover:bg-blue-50 rounded-lg shadow overflow-hidden flex flex-col"
-              >
-                <img
-                  src={loc.image}
-                  alt={loc.name}
-                  className="bg-blue-300 w-full aspect-[16/9] object-cover"
-                />
-                <div className="p-4 flex-1 flex flex-col justify-between">
-                  <div>
-                    <h4 className="font-semibold mb-1">{loc.name}</h4>
-                    <p className="text-sm text-gray-600">{loc.admin}</p>
-                  </div>
-                  <span className="flex justify-end mt-2">
-                    <button
-                      className="cursor-pointer"
-                      onClick={() => toggleFavorite(idx)}
-                    >
-                      {loc.favorite ? (
-                        <FaStar className="text-yellow-500" />
-                      ) : (
-                        <FaRegStar className="text-gray-400" />
-                      )}
-                    </button>
-                  </span>
-                </div>
-              </div>
-            ))}
-          </div>
+            </div>
+          </section>
         </section>
       </main>
     </div>
