@@ -66,7 +66,7 @@ const AdminView = () => {
 
   return (
     <div className="min-h-screen bg-[#F8FDFF] text-[#232f34]">
-      <main className="p-10">
+      <main className="p-6">
         {/* 소개 문구 */}
         <section className="mb-8">
           <h2 className="text-[#232f34] text-xl font-semibold mb-1">

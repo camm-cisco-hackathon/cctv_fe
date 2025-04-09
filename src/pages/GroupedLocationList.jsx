@@ -70,7 +70,7 @@ const GroupedLocationList = () => {
 
   return (
     <div className="min-h-screen bg-[#F8FDFF] text-[#232f34]">
-      <main className="p-10 flex flex-col">
+      <main className="p-6 flex flex-col">
         {/* 소개 문구 */}
         <h2 className="text-[#232f34] text-xl font-semibold mb-1">내 장소</h2>
         <p className="text-sm text-[#5d6c72] mb-8">

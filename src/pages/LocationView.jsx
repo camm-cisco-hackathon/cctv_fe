@@ -32,10 +32,14 @@ const LocationView = () => {
     <div className="flex min-h-screen bg-[#F8FDFF] text-[#232f34]">
       {/* 왼쪽 사이드바 */}
       <aside className="w-[280px] bg-white text-[#232f34] border-r border-[#E0F7FF] flex flex-col">
-        <div className="text-[#00AEEF] font-bold text-xl px-5 py-4 border-b border-[#E0F7FF]">
-          장소 목록
+        <div className="p-5">
+          <h2 className="text-[#232f34] text-xl font-semibold mb-1">
+            내 장소 목록
+          </h2>
+          <p className="text-sm text-[#5d6c72] ">
+            확인 가능한 장소의 목록입니다.
+          </p>
         </div>
-
         {/* 검색창 */}
         <div className="relative p-4">
           <FiSearch className="absolute left-6 top-1/2 transform -translate-y-1/2 text-gray-400" />
