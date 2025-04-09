@@ -58,52 +58,60 @@ export default function Home() {
           <div>
             <h3 className="text-base font-semibold mb-2">최근 이슈</h3>
             <section className="grid grid-cols-1 md:grid-cols-3 gap-4">
-              {[
-                { title: "CCTV 설치 요청", color: "#00AEEF", width: "w-3/4" },
-                { title: "조명 고장 신고", color: "#facc15", width: "w-1/2" },
-                { title: "출입문 오작동", color: "#f472b6", width: "w-1/6" },
-              ].map((item, index) => (
-                <div key={index} className="bg-[#F8FDFF] p-4 rounded-lg shadow">
-                  <p className="font-medium mb-2">{item.title}</p>
-                  <div className="w-full h-2 bg-gray-200 rounded-full">
-                    <div
-                      className={`h-full rounded-full ${item.width}`}
-                      style={{ backgroundColor: item.color }}
-                    />
+              {["CCTV 설치 요청", "조명 고장 신고", "출입문 오작동"].map((title, index) => {
+                const color = ["#00AEEF", "#facc15", "#f472b6"][index];
+                const width = ["w-3/4", "w-1/2", "w-1/6"][index];
+                return (
+                  <div key={index} className="bg-[#F8FDFF] p-4 rounded-lg shadow">
+                    <p className="font-medium mb-2">{title}</p>
+                    <div className="w-full h-2 bg-gray-200 rounded-full">
+                      <div className={`h-full rounded-full ${width}`} style={{ backgroundColor: color }} />
+                    </div>
                   </div>
-                </div>
-              ))}
+                );
+              })}
             </section>
           </div>
 
           {/* 장소 목록 */}
-          <div>
-            <h3 className="text-base font-semibold mb-2 flex items-center justify-between">
-              <span>장소 목록</span>
-              <div className="flex gap-2">
-                <button
-                  onClick={scrollLeft}
-                  className="bg-[#00AEEF] text-white rounded p-1 hover:bg-[#0095CF]"
-                >
-                  <IoIosArrowBack size={20} />
-                </button>
-                <button
-                  onClick={scrollRight}
-                  className="bg-[#00AEEF] text-white rounded p-1 hover:bg-[#0095CF]"
-                >
-                  <IoIosArrowForward size={20} />
-                </button>
-              </div>
-            </h3>
+          <div className="relative">
+            <h3 className="text-base font-semibold mb-2">장소 목록</h3>
+
+  {/* 왼쪽 화살표 */}
+<button
+  onClick={scrollLeft}
+  className="absolute left-2 top-1/2 transform -translate-y-1/2 z-10"
+>
+  <IoIosArrowBack
+    size={36}
+    className="text-white drop-shadow-[0_2px_4px_rgba(0,0,0,0.6)] hover:brightness-125 transition"
+  />
+</button>
+
+{/* 오른쪽 화살표 */}
+<button
+  onClick={scrollRight}
+  className="absolute right-2 top-1/2 transform -translate-y-1/2 z-10"
+>
+  <IoIosArrowForward
+    size={36}
+    className="text-white drop-shadow-[0_2px_4px_rgba(0,0,0,0.6)] hover:brightness-125 transition"
+  />
+</button>
+
 
             <section
               ref={scrollRef}
-              className="flex gap-4 overflow-x-auto pb-2 scrollbar-hide"
+              className="flex gap-4 overflow-x-auto pb-2 px-0"
+              style={{
+                scrollbarWidth: "none",
+                msOverflowStyle: "none",
+              }}
             >
               {[1, 2, 3, 4, 5].map((i) => (
                 <div
                   key={i}
-                  className="min-w-[240px] h-[308px] bg-[#F8FDFF] rounded-lg shadow overflow-hidden flex flex-col"
+                  className="min-w-[240px] h-[297px] bg-[#F8FDFF] rounded-lg shadow overflow-hidden flex flex-col"
                 >
                   <img
                     src={apartmentImg}
@@ -112,9 +120,7 @@ export default function Home() {
                   />
                   <div className="p-4 flex-1">
                     <h4 className="font-semibold mb-1">현관 카메라 {i}</h4>
-                    <p className="text-sm text-gray-600">
-                      최근 감지: {i * 2}분 전
-                    </p>
+                    <p className="text-sm text-gray-600">최근 감지: {i * 2}분 전</p>
                   </div>
                 </div>
               ))}
@@ -124,7 +130,6 @@ export default function Home() {
 
         {/* 오른쪽 그룹 */}
         <div className="bg-white p-4 rounded-xl shadow space-y-6">
-          {/* 내 프로필 */}
           <div>
             <h3 className="text-base font-semibold mb-2">내 프로필</h3>
             <section className="p-4 rounded-lg shadow flex items-center gap-4 h-[70px] bg-[#F8FDFF]">
@@ -136,7 +141,6 @@ export default function Home() {
             </section>
           </div>
 
-          {/* 이번 주 일정 */}
           <div>
             <h3 className="text-base font-semibold mb-2">이번 주 일정</h3>
             <section className="p-4 rounded-lg shadow h-[300px] flex flex-col bg-[#F8FDFF]">
