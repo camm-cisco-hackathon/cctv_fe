@@ -1,25 +1,21 @@
-import React from "react";
+import React, { useState } from "react";
 import { FaRegStar, FaStar } from "react-icons/fa";
+import apartment from "../images/apartment.jpg";
 
 const GroupedLocationList = () => {
-  const myLocations = [
+  const [myLocations, setMyLocations] = useState([
     {
       name: "1202호 앞",
+      favorite: true,
+      admin: "노원 광운대역 센트럴 힐스테이트 레이크뷰 3차",
+    },
+    {
+      name: "101동 엘리베이터 1호기",
       favorite: false,
       admin: "노원 광운대역 센트럴 힐스테이트 레이크뷰 3차",
     },
     {
-      name: "101동 엘리베이터 1층기",
-      favorite: false,
-      admin: "노원 광운대역 센트럴 힐스테이트 레이크뷰 3차",
-    },
-    {
-      name: "101동 공용 현관",
-      favorite: false,
-      admin: "노원 광운대역 센트럴 힐스테이트 레이크뷰 3차",
-    },
-    {
-      name: "101동 놀이터",
+      name: "101동 공동 현관",
       favorite: false,
       admin: "노원 광운대역 센트럴 힐스테이트 레이크뷰 3차",
     },
@@ -29,16 +25,22 @@ const GroupedLocationList = () => {
       admin: "노원 광운대역 센트럴 힐스테이트 레이크뷰 3차",
     },
     {
-      name: "101동 놀이터",
+      name: "분리수거장",
       favorite: false,
       admin: "노원 광운대역 센트럴 힐스테이트 레이크뷰 3차",
     },
     {
-      name: "101동 놀이터",
+      name: "지하주차장(1층)",
       favorite: false,
       admin: "노원 광운대역 센트럴 힐스테이트 레이크뷰 3차",
     },
-  ];
+  ]);
+
+  const toggleFavorite = (index) => {
+    const newLocations = [...myLocations];
+    newLocations[index].favorite = !newLocations[index].favorite;
+    setMyLocations(newLocations);
+  };
 
   return (
     <div className="min-h-screen bg-[#F8FDFF] text-[#232f34]">
@@ -58,21 +60,62 @@ const GroupedLocationList = () => {
             즐겨찾기
           </h3>
           <div className="p-4 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4">
+            {myLocations
+              .filter((loc) => loc.favorite)
+              .map((loc, idx) => (
+                <div
+                  key={idx}
+                  className="w-full aspect-[1/1] bg-[#F8FDFF] rounded-lg shadow overflow-hidden flex flex-col"
+                >
+                  <img
+                    src={apartment}
+                    className="bg-blue-300 w-full aspect-[16/9] object-cover"
+                  />
+                  <div className="p-4 flex-1 flex flex-col justify-between">
+                    <div>
+                      <h4 className="font-semibold mb-1">{loc.name}</h4>
+                      <p className="text-sm text-gray-600">{loc.admin}</p>
+                    </div>
+                    <span className="flex justify-end mt-2">
+                      <button
+                        className="cursor-pointer"
+                        onClick={() => toggleFavorite(idx)}
+                      >
+                        {loc.favorite ? (
+                          <FaStar className="text-yellow-500" />
+                        ) : (
+                          <FaRegStar className="text-gray-400" />
+                        )}
+                      </button>
+                    </span>
+                  </div>
+                </div>
+              ))}
+          </div>
+        </section>
+        <section className="mb-8">
+          <h3 className="text-[#232f34] font-semibold text-base flex items-center bg-transparent border-none">
+            전체 장소
+          </h3>
+          <div className="p-4 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4">
             {myLocations.map((loc, idx) => (
               <div
                 key={idx}
                 className="w-full aspect-[1/1] bg-[#F8FDFF] rounded-lg shadow overflow-hidden flex flex-col"
               >
-                <div className="bg-blue-300 w-full aspect-[16/9] object-cover" />
-                <div className="p-4 flex-1">
-                  <h4 className="font-semibold mb-1">{loc.name}</h4>
-                  <p className="text-sm text-gray-600">{loc.admin}</p>
-                  <span className="flex">
+                <img
+                  src={apartment}
+                  className="bg-blue-300 w-full aspect-[16/9] object-cover"
+                />
+                <div className="p-4 flex-1 flex flex-col justify-between">
+                  <div>
+                    <h4 className="font-semibold mb-1">{loc.name}</h4>
+                    <p className="text-sm text-gray-600">{loc.admin}</p>
+                  </div>
+                  <span className="flex justify-end mt-2">
                     <button
                       className="cursor-pointer"
-                      onClick={() => {
-                        loc.favorite = !loc.favorite;
-                      }}
+                      onClick={() => toggleFavorite(idx)}
                     >
                       {loc.favorite ? (
                         <FaStar className="text-yellow-500" />
