@@ -1,9 +1,11 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import AdminTable from "./AdminTable";
 import Search from "../components/SearchComponent";
 import apartment from "../images/apartment.jpg";
 
 const AdminView = () => {
+  const Navigate = useNavigate();
   const [myLocations, setMyLocations] = useState([
     {
       name: "1202호 앞",
@@ -60,6 +62,7 @@ const AdminView = () => {
                 <div
                   key={idx}
                   className="w-full aspect-[1/1] bg-[#F8FDFF] hover:bg-blue-50 rounded-lg shadow overflow-hidden flex flex-col"
+                  onClick={() => Navigate("/admin-view")}
                 >
                   <img
                     src={apartment}
