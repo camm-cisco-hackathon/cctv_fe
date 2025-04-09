@@ -36,7 +36,7 @@ export default function LandingPage() {
         안전하게 지켜보세요
       </h1>
       <p className="text-lg md:text-xl text-gray-600 mb-8">
-        Visi-On으로 실시간 모니터링, 움직임 감지 알림, <br />
+        VISI:ON으로 실시간 모니터링, 움직임 감지 알림, <br />
         클라우드 저장 기능을 통해 소중한 공간을 보호하세요.
       </p>
       <div className="flex flex-col sm:flex-row gap-4">
@@ -91,51 +91,6 @@ export default function LandingPage() {
                   {icon === "📹" && "언제 어디서나 스마트폰으로 집안을 실시간으로 확인할 수 있습니다."}
                   {icon === "🔔" && "의심스러운 움직임이 감지되면 즉시 알림을 받을 수 있습니다."}
                   {icon === "☁️" && "영상 기록이 자동으로 클라우드에 저장되어 언제든지 확인할 수 있습니다."}
-                </p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* 이용 방법 */}
-      <section className="py-16 px-6">
-        <div className="max-w-6xl mx-auto">
-          <h2 className="text-3xl font-bold text-center mb-16">이용 방법</h2>
-          <div className="flex flex-col md:flex-row gap-8">
-            {["01", "02", "03"].map((step, index) => (
-              <div key={index} className="flex-1 flex flex-col items-center text-center">
-                <div className="w-16 h-16 rounded-full bg-[#D9F4FD] text-[#00AEEF] flex items-center justify-center font-bold text-xl mb-4">
-                  {step}
-                </div>
-                <h3 className="text-xl font-semibold mb-2">
-                  {step === "01" && "기기 설치"}
-                  {step === "02" && "앱 연결"}
-                  {step === "03" && "실시간 모니터링"}
-                </h3>
-                <p className="text-gray-600">
-                  {step === "01" && "간편한 설치로 5분만에 홈캠을 연결하세요."}
-                  {step === "02" && "Visi-On 앱을 다운로드하고 기기를 등록하세요."}
-                  {step === "03" && "언제 어디서나 실시간으로 확인하세요."}
-                </p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* FAQ */}
-      <section id="faq" className="py-16 px-6 bg-[#D9F4FD]">
-        <div className="max-w-3xl mx-auto">
-          <h2 className="text-3xl font-bold text-center mb-16">자주 묻는 질문</h2>
-          <div className="space-y-6">
-            {["설치는 어렵지 않나요?", "인터넷이 끊기면 어떻게 되나요?"].map((q, index) => (
-              <div key={index} className="bg-white p-6 rounded-lg shadow">
-                <h3 className="text-lg font-semibold mb-2">{q}</h3>
-                <p className="text-gray-600">
-                  {index === 0
-                    ? "아니요, Visi-On은 누구나 쉽게 설치할 수 있도록 설계되었습니다."
-                    : "로컬에 저장되며 인터넷 연결이 복구되면 클라우드로 자동 업로드됩니다."}
                 </p>
               </div>
             ))}
