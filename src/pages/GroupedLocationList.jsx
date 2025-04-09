@@ -70,7 +70,7 @@ const GroupedLocationList = () => {
         {/* 이슈 섹션 */}
         <div className="mb-8">
           <div className="flex items-center mb-3">
-            <h3 className="text-[#232f34] font-semibold text-base flex items-center cursor-pointer bg-transparent border-none">
+            <h3 className="text-[#232f34] font-semibold text-base flex items-center bg-transparent border-none">
               이슈
             </h3>
           </div>
@@ -101,11 +101,11 @@ const GroupedLocationList = () => {
               .map((loc, idx) => (
                 <div
                   key={idx}
-                  className="w-full aspect-[1/1] bg-[#F8FDFF] rounded-lg shadow overflow-hidden flex flex-col"
+                  className="w-full aspect-[1/1] bg-[#F8FDFF] hover:bg-blue-50 rounded-lg shadow overflow-hidden flex flex-col"
                 >
                   <img
                     src={apartment}
-                    className="bg-blue-300 w-full aspect-[16/9] object-cover"
+                    className="bg-blue-300 w-full aspect-[16/9] object-cover cursor-pointer"
                   />
                   <div className="p-4 flex-1 flex flex-col justify-between">
                     <div>
@@ -137,7 +137,7 @@ const GroupedLocationList = () => {
             {myLocations.map((loc, idx) => (
               <div
                 key={idx}
-                className="w-full aspect-[1/1] bg-[#F8FDFF] rounded-lg shadow overflow-hidden flex flex-col"
+                className="w-full aspect-[1/1] bg-[#F8FDFF] hover:bg-blue-50 rounded-lg shadow overflow-hidden flex flex-col"
               >
                 <img
                   src={apartment}
