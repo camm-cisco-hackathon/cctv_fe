@@ -36,6 +36,17 @@ const GroupedLocationList = () => {
     },
   ]);
 
+  const myAlert = [
+    {
+      time: "(2023.03.25. 22:03)",
+      location: "1202호 앞",
+    },
+    {
+      time: "(2023.03.25. 21:48)",
+      location: "1202호 앞",
+    },
+  ];
+
   const toggleFavorite = (index) => {
     const newLocations = [...myLocations];
     newLocations[index].favorite = !newLocations[index].favorite;
@@ -51,9 +62,34 @@ const GroupedLocationList = () => {
           </h2>
           <p className="text-sm text-[#5d6c72]">
             <span className="text-[#00AEEF] font-semibold">VISI:ON</span>의
-            비식별화 처리로 내 공간에 더욱 쉽게 엑세스하세요.
+            비식별화 처리를 통해 내 공간에 더욱 쉽게 엑세스하고, <br />내
+            공간에서 발생하는 이슈들을 빠르게 확인해보세요.
           </p>
         </section>
+
+        {/* 이슈 섹션 */}
+        <div className="mb-8">
+          <div className="flex items-center mb-3">
+            <h3 className="text-[#232f34] font-semibold text-base flex items-center cursor-pointer bg-transparent border-none">
+              이슈
+            </h3>
+          </div>
+          <div className="p-4 grid grid-cols-1 gap-4">
+            {myAlert.map((alert, idx) => (
+              <div className="bg-white border border-[#ffe066] border-l-4 rounded-lg p-4 shadow cursor-pointer hover:bg-[#fffdf0]">
+                <div className="font-medium mb-1 flex items-center">
+                  <span className="mr-2 text-[#ffcc00]">⚠️</span>
+                  <span>
+                    나의 공간(
+                    <span className="text-[#00AEEF]">{alert.location}</span>)에
+                    누군가 침입했어요.
+                  </span>
+                </div>
+                <div className="text-sm text-[#5d6c72]">{alert.time}</div>
+              </div>
+            ))}
+          </div>
+        </div>
 
         <section className="mb-8">
           <h3 className="text-[#232f34] font-semibold text-base flex items-center bg-transparent border-none">
@@ -129,22 +165,6 @@ const GroupedLocationList = () => {
             ))}
           </div>
         </section>
-
-        {/* 이슈 섹션 */}
-        <div className="mb-8">
-          <div className="flex items-center mb-3">
-            <button className="text-[#232f34] font-semibold text-base flex items-center cursor-pointer bg-transparent border-none">
-              이슈
-            </button>
-          </div>
-          <div className="bg-white border border-[#ffe066] border-l-4 rounded-lg p-4 shadow cursor-pointer hover:bg-[#fffdf0]">
-            <div className="font-medium mb-1 flex items-center">
-              <span className="mr-2 text-[#ffcc00]">⚠️</span>
-              <span>우리 집(1202호) 앞에 누군가 방문했어요.</span>
-            </div>
-            <div className="text-sm text-[#5d6c72]">(2023.03.25. 22:03)</div>
-          </div>
-        </div>
       </main>
     </div>
   );
