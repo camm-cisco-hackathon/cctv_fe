@@ -41,7 +41,7 @@ export default function LandingPage() {
       </p>
       <div className="flex flex-col sm:flex-row gap-4">
         <button className="px-8 py-3 bg-[#00AEEF] text-white rounded-lg hover:bg-[#0095CF] font-medium">
-          무료 체험 시작하기
+          시작하기
         </button>
         <button className="px-8 py-3 border border-[#00AEEF] text-[#00AEEF] rounded-lg hover:bg-[#D9F4FD] font-medium">
           자세히 알아보기
