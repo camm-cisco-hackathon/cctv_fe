@@ -10,45 +10,70 @@ import imgPlayground from "../images/101 playground.png";
 import imgRecycling from "../images/recycling.png";
 import imgParking from "../images/parking.png";
 
+import elevatorImg from "../images/101elevator.png";
+import playgroundImg from "../images/101playground.png";
+import entranceImg from "../images/GateHub101.png";
+import recyclingImg from "../images/recycling.png";
+import parkingImg from "../images/parking.png";
+import unit1202Img from "../images/1202.png";
+
 const AdminView = () => {
-  const [myLocations, setMyLocations] = useState([
+  const myLocations = [
     {
-      name: "1202호 앞",
+      name: "Elevator",
+      label: "엘리베이터",
+      time: "2분 전",
+      image: elevatorImg,
       favorite: true,
       admin: "노원 광운대역 센트럴 힐스테이트 레이크뷰 3차",
       image: img1202,
     },
     {
-      name: "101동 엘리베이터 1호기",
-      favorite: false,
+      name: "Playground",
+      label: "놀이터",
+      time: "5분 전",
+      image: playgroundImg,
+      favorite: true,
       admin: "노원 광운대역 센트럴 힐스테이트 레이크뷰 3차",
       image: imgElevator,
     },
     {
-      name: "101동 공동 현관",
-      favorite: false,
+      name: "Main Entrance",
+      label: "공동 현관",
+      time: "1분 전",
+      image: entranceImg,
+      favorite: true,
       admin: "노원 광운대역 센트럴 힐스테이트 레이크뷰 3차",
       image: imgEntrance,
     },
     {
-      name: "101동 놀이터",
-      favorite: false,
+      name: "Recycling Station",
+      label: "분리수거장",
+      time: "7분 전",
+      image: recyclingImg,
+      favorite: true,
       admin: "노원 광운대역 센트럴 힐스테이트 레이크뷰 3차",
       image: imgPlayground,
     },
     {
-      name: "분리수거장",
-      favorite: false,
+      name: "Parking Garage",
+      label: "지하주차장",
+      time: "3분 전",
+      image: parkingImg,
+      favorite: true,
       admin: "노원 광운대역 센트럴 힐스테이트 레이크뷰 3차",
       image: imgRecycling,
     },
     {
-      name: "지하주차장(1층)",
-      favorite: false,
+      name: "Unit 1202",
+      label: "1202호",
+      time: "방금 전",
+      image: unit1202Img,
+      favorite: true,
       admin: "노원 광운대역 센트럴 힐스테이트 레이크뷰 3차",
       image: imgParking,
     },
-  ]);
+  ];
 
   return (
     <div className="min-h-screen bg-[#F8FDFF] text-[#232f34]">
@@ -59,7 +84,8 @@ const AdminView = () => {
             관리자뷰
           </h2>
           <p className="text-sm text-[#5d6c72]">
-            관리자 뷰에서는 엑세스 권한을 통해 클라우드에 저장된 비식별화 되지 않은 원본 이미지를 확인할 수 있습니다.
+            관리자 뷰에서는 엑세스 권한을 통해 클라우드에 저장된 비식별화 되지
+            않은 원본 이미지를 확인할 수 있습니다.
           </p>
         </section>
 
