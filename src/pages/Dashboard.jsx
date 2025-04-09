@@ -9,13 +9,12 @@ import { FiSearch } from "react-icons/fi";
 import { IoIosArrowBack, IoIosArrowForward } from "react-icons/io";
 
 // 이미지 불러오기
-import elevatorImg from "../images/101 elevator.png";
-import playgroundImg from "../images/101 playground.png";
-import entranceImg from "../images/GateHub 101.png";
+import elevatorImg from "../images/101elevator.png";
+import playgroundImg from "../images/101playground.png";
+import entranceImg from "../images/GateHub101.png";
 import recyclingImg from "../images/recycling.png";
 import parkingImg from "../images/parking.png";
 import unit1202Img from "../images/1202.png";
-
 
 const Dashboard = () => {
   const scrollRef = useRef(null);
