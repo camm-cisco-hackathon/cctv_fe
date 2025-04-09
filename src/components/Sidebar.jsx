@@ -29,7 +29,10 @@ const Sidebar = () => {
         />
         <MenuItem
           label="내 장소"
-          active={location.pathname == "/location"}
+          active={
+            location.pathname == "/location" ||
+            location.pathname == "/location-view"
+          }
           onClick={() => navigation("/location")}
         />
         {/* <MenuItem
@@ -39,7 +42,9 @@ const Sidebar = () => {
         /> */}
         <MenuItem
           label="관리자뷰"
-          active={location.pathname == "/admin"}
+          active={
+            location.pathname == "/admin" || location.pathname == "/admin-view"
+          }
           onClick={() => navigation("/admin")}
         />
       </div>
