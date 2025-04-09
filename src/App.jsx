@@ -1,12 +1,13 @@
 import React from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Sidebar from "./components/Sidebar";
-import Dashboard from "./pages/Dashboard"; 
+import Dashboard from "./pages/Dashboard";
 import Home from "./pages/Home";
 import GroupedLocationList from "./pages/GroupedLocationList";
 import IssuePage from "./pages/IssuePage";
 import LandingPage from "./pages/LandingPage";
-import Sender from "./pages/Sender";
+import AdminView from "./pages/AdminView";
+import Sender from "./pages/Sender"; // test page
 
 function App() {
   return (
@@ -30,7 +31,7 @@ function App() {
           }
         />
         <Route
-          path="/favorites"
+          path="/location"
           element={
             <WithLayout>
               <GroupedLocationList />
@@ -42,6 +43,14 @@ function App() {
           element={
             <WithLayout>
               <IssuePage />
+            </WithLayout>
+          }
+        />
+        <Route
+          path="/admin"
+          element={
+            <WithLayout>
+              <AdminView />
             </WithLayout>
           }
         />
