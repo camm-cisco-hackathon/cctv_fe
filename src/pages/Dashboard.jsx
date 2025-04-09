@@ -211,7 +211,9 @@ const Dashboard = () => {
           </div>
 
           <div>
-            <h3 className="text-base font-semibold mb-2">이번 주 일정</h3>
+            <h3 className="text-base font-semibold mb-2">
+              날짜 별 이슈 확인하기
+            </h3>
             <section className="p-4 rounded-lg shadow h-[300px] flex flex-col bg-[#F8FDFF]">
               <div className="flex-grow overflow-hidden">
                 <LocalizationProvider dateAdapter={AdapterDayjs}>

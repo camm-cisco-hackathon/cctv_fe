@@ -28,15 +28,15 @@ const Sidebar = () => {
           }}
         />
         <MenuItem
-          label="장소"
+          label="내 장소"
           active={location.pathname == "/location"}
           onClick={() => navigation("/location")}
         />
-        <MenuItem
+        {/* <MenuItem
           label="이슈"
           active={location.pathname == "/issue"}
           onClick={() => navigation("/issue")}
-        />
+        /> */}
         <MenuItem
           label="관리자뷰"
           active={location.pathname == "/admin"}
