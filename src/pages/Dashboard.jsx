@@ -7,7 +7,15 @@ import { FaUserCircle } from "react-icons/fa";
 import { MdNotificationsActive } from "react-icons/md";
 import { FiSearch } from "react-icons/fi";
 import { IoIosArrowBack, IoIosArrowForward } from "react-icons/io";
-import apartmentImg from "../images/apartment.jpg";
+
+// 이미지 불러오기
+import elevatorImg from "../images/101 elevator.png";
+import playgroundImg from "../images/101 playground.png";
+import entranceImg from "../images/GateHub 101.png";
+import recyclingImg from "../images/recycling.png";
+import parkingImg from "../images/parking.png";
+import unit1202Img from "../images/1202.png";
+
 
 const Dashboard = () => {
   const scrollRef = useRef(null);
@@ -19,6 +27,45 @@ const Dashboard = () => {
   const scrollRight = () => {
     scrollRef.current.scrollBy({ left: 300, behavior: "smooth" });
   };
+
+  const locations = [
+    {
+      name: "Elevator",
+      label: "엘리베이터",
+      time: "2분 전",
+      image: elevatorImg,
+    },
+    {
+      name: "Playground",
+      label: "놀이터",
+      time: "5분 전",
+      image: playgroundImg,
+    },
+    {
+      name: "Main Entrance",
+      label: "공동 현관",
+      time: "1분 전",
+      image: entranceImg,
+    },
+    {
+      name: "Recycling Station",
+      label: "분리수거장",
+      time: "7분 전",
+      image: recyclingImg,
+    },
+    {
+      name: "Parking Garage",
+      label: "지하주차장",
+      time: "3분 전",
+      image: parkingImg,
+    },
+    {
+      name: "Unit 1202",
+      label: "1202호",
+      time: "방금 전",
+      image: unit1202Img,
+    },
+  ];
 
   return (
     <div className="min-h-screen bg-[#F8FDFF] text-[#232f34] p-6 space-y-6">
@@ -85,7 +132,6 @@ const Dashboard = () => {
           <div className="relative">
             <h3 className="text-base font-semibold mb-2">장소 목록</h3>
 
-            {/* 왼쪽 화살표 */}
             <button
               onClick={scrollLeft}
               className="absolute left-2 top-1/2 transform -translate-y-1/2 z-10"
@@ -96,7 +142,6 @@ const Dashboard = () => {
               />
             </button>
 
-            {/* 오른쪽 화살표 */}
             <button
               onClick={scrollRight}
               className="absolute right-2 top-1/2 transform -translate-y-1/2 z-10"
@@ -115,20 +160,20 @@ const Dashboard = () => {
                 msOverflowStyle: "none",
               }}
             >
-              {[1, 2, 3, 4, 5].map((i) => (
+              {locations.map((loc, i) => (
                 <div
                   key={i}
                   className="min-w-[240px] h-[297px] bg-[#F8FDFF] rounded-lg shadow overflow-hidden flex flex-col"
                 >
                   <img
-                    src={apartmentImg}
-                    alt={`장소 ${i}`}
+                    src={loc.image}
+                    alt={loc.name}
                     className="w-full h-44 object-cover"
                   />
                   <div className="p-4 flex-1">
-                    <h4 className="font-semibold mb-1">현관 카메라 {i}</h4>
+                    <h4 className="font-semibold mb-1">{loc.label}</h4>
                     <p className="text-sm text-gray-600">
-                      최근 감지: {i * 2}분 전
+                      최근 감지: {loc.time}
                     </p>
                   </div>
                 </div>
