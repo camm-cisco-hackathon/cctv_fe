@@ -2,20 +2,13 @@ import { useState } from "react";
 import AdminTable from "./AdminTable";
 import Search from "../components/SearchComponent";
 
-// 장소별 이미지 import
-import img1202 from "../images/1202.png";
-import imgElevator from "../images/101elevator.png";
-import imgEntrance from "../images/GateHub101.png";
-import imgPlayground from "../images/101playground.png";
-import imgRecycling from "../images/recycling.png";
-import imgParking from "../images/parking.png";
-
 import elevatorImg from "../images/101elevator.png";
 import playgroundImg from "../images/101playground.png";
 import entranceImg from "../images/GateHub101.png";
 import recyclingImg from "../images/recycling.png";
 import parkingImg from "../images/parking.png";
 import unit1202Img from "../images/1202.png";
+import { useNavigate } from "react-router-dom";
 
 const AdminView = () => {
   const myLocations = [
@@ -26,7 +19,6 @@ const AdminView = () => {
       image: elevatorImg,
       favorite: true,
       admin: "노원 광운대역 센트럴 힐스테이트 레이크뷰 3차",
-      image: img1202,
     },
     {
       name: "Playground",
@@ -35,7 +27,6 @@ const AdminView = () => {
       image: playgroundImg,
       favorite: true,
       admin: "노원 광운대역 센트럴 힐스테이트 레이크뷰 3차",
-      image: imgElevator,
     },
     {
       name: "Main Entrance",
@@ -44,7 +35,6 @@ const AdminView = () => {
       image: entranceImg,
       favorite: true,
       admin: "노원 광운대역 센트럴 힐스테이트 레이크뷰 3차",
-      image: imgEntrance,
     },
     {
       name: "Recycling Station",
@@ -53,7 +43,6 @@ const AdminView = () => {
       image: recyclingImg,
       favorite: true,
       admin: "노원 광운대역 센트럴 힐스테이트 레이크뷰 3차",
-      image: imgPlayground,
     },
     {
       name: "Parking Garage",
@@ -62,7 +51,6 @@ const AdminView = () => {
       image: parkingImg,
       favorite: true,
       admin: "노원 광운대역 센트럴 힐스테이트 레이크뷰 3차",
-      image: imgRecycling,
     },
     {
       name: "Unit 1202",
@@ -71,9 +59,10 @@ const AdminView = () => {
       image: unit1202Img,
       favorite: true,
       admin: "노원 광운대역 센트럴 힐스테이트 레이크뷰 3차",
-      image: imgParking,
     },
   ];
+
+  const Navigate = useNavigate();
 
   return (
     <div className="min-h-screen bg-[#F8FDFF] text-[#232f34]">
@@ -99,6 +88,9 @@ const AdminView = () => {
             {myLocations.map((loc, idx) => (
               <div
                 key={idx}
+                onClick={() => {
+                  Navigate("/admin-view");
+                }}
                 className="w-full aspect-[1/1] bg-[#F8FDFF] hover:bg-blue-50 rounded-lg shadow overflow-hidden flex flex-col"
               >
                 <img

@@ -1,9 +1,9 @@
 import { useState, useEffect, useRef } from "react";
+import { useLocation } from "react-router-dom";
 
 const Viewer = ({
   wsUrl = "ws://localhost:52049/ws",
   streamOnMount = false,
-  isAdmin,
 }) => {
   const [isConnected, setIsConnected] = useState(true);
   const [currentFrame, setCurrentFrame] = useState(null);
@@ -14,6 +14,14 @@ const Viewer = ({
   const [isDecryptionEnabled, setIsDecryptionEnabled] = useState(false);
   const [statusMessage, setStatusMessage] = useState("");
   const wsRef = useRef(null);
+
+  const [isAdmin, setIsAdmin] = useState(false);
+  const location = useLocation();
+
+  useEffect(() => {
+    setIsAdmin(location.pathname == "/admin-view");
+    console.log(isAdmin);
+  });
 
   // connect to websocket server
   const connectWebSocket = () => {

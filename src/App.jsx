@@ -55,6 +55,14 @@ function App() {
           }
         />
         <Route
+          path="/admin-view"
+          element={
+            <WithLayout>
+              <LocationView />
+            </WithLayout>
+          }
+        />
+        <Route
           path="/sender"
           element={
             <WithLayout>
