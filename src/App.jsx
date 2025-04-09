@@ -6,6 +6,9 @@ import GroupedLocationList from "./pages/GroupedLocationList";
 import IssuePage from "./pages/IssuePage";
 import LandingPage from "./pages/LandingPage";
 
+import Sender from "./pages/Sender";
+import Viewer from "./components/Viewer";
+
 function App() {
   return (
     <Router>
@@ -32,6 +35,22 @@ function App() {
           element={
             <WithLayout>
               <IssuePage />
+            </WithLayout>
+          }
+        />
+        <Route
+          path="/sender"
+          element={
+            <WithLayout>
+              <Sender />
+            </WithLayout>
+          }
+        />
+        <Route
+          path="/viewer"
+          element={
+            <WithLayout>
+              <Viewer />
             </WithLayout>
           }
         />
