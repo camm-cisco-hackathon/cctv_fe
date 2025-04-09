@@ -16,7 +16,10 @@ import recyclingImg from "../images/recycling.png";
 import parkingImg from "../images/parking.png";
 import unit1202Img from "../images/1202.png";
 
+import { useNavigate } from "react-router-dom";
+
 const Dashboard = () => {
+  const Navigate = useNavigate();
   const scrollRef = useRef(null);
 
   const scrollLeft = () => {
@@ -112,6 +115,7 @@ const Dashboard = () => {
                     <div
                       key={index}
                       className="bg-[#F8FDFF] p-4 rounded-lg shadow"
+                      onClick={() => {}}
                     >
                       <p className="font-medium mb-2">{title}</p>
                       <div className="w-full h-2 bg-gray-200 rounded-full">
@@ -162,6 +166,9 @@ const Dashboard = () => {
               {locations.map((loc, i) => (
                 <div
                   key={i}
+                  onClick={() => {
+                    Navigate("/location-view");
+                  }}
                   className="min-w-[240px] h-[297px] bg-[#F8FDFF] rounded-lg shadow overflow-hidden flex flex-col"
                 >
                   <img

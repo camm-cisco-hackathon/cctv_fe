@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { FaRegStar, FaStar } from "react-icons/fa";
+import { useNavigate } from "react-router-dom";
 
 import img1202 from "../images/1202.png";
 import imgElevator from "../images/101elevator.png";
@@ -9,6 +10,8 @@ import imgRecycling from "../images/recycling.png";
 import imgParking from "../images/parking.png";
 
 const GroupedLocationList = () => {
+  const Navigate = useNavigate();
+
   const [myLocations, setMyLocations] = useState([
     {
       name: "1202호 앞",
@@ -118,6 +121,9 @@ const GroupedLocationList = () => {
               .map((loc, idx) => (
                 <div
                   key={idx}
+                  onClick={() => {
+                    Navigate("/location-view");
+                  }}
                   className="w-full aspect-[1/1] bg-[#F8FDFF] hover:bg-blue-50 rounded-lg shadow overflow-hidden flex flex-col"
                 >
                   <img
@@ -157,6 +163,9 @@ const GroupedLocationList = () => {
             {myLocations.map((loc, idx) => (
               <div
                 key={idx}
+                onClick={() => {
+                  Navigate("/location-view");
+                }}
                 className="w-full aspect-[1/1] bg-[#F8FDFF] hover:bg-blue-50 rounded-lg shadow overflow-hidden flex flex-col"
               >
                 <img
