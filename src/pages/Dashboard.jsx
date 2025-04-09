@@ -12,6 +12,13 @@ const Dashboard = () => {
     setShowViewer(true);
   };
 
+  const otherLocation = [
+    "1202호 앞",
+    "101동 12층",
+    "101동 공용 현관",
+    "101동 엘리베이터",
+  ];
+
   return (
     <div className="min-h-screen w-full bg-[#F8FDFF] text-[#232f34] pt-5 pl-6 pr-6">
       {/* 메인 비디오/이미지 프리뷰 영역 */}
@@ -54,19 +61,17 @@ const Dashboard = () => {
 
       {/* 장소 카드 목록 */}
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4 mb-8">
-        {["1202호 앞", "101동 12층", "101동 공용 현관", "101동 엘리베이터"].map(
-          (loc, idx) => (
-            <div
-              key={idx}
-              className="bg-white border border-[#E0F7FF] rounded-lg p-4 flex items-center shadow hover:shadow-lg hover:border-[#00AEEF] transition cursor-pointer"
-              onClick={() => handleLocationClick(loc)}
-            >
-              <span className="text-[#00AEEF] text-xl mr-3">📍</span>
-              <span>{loc}</span>
-              <span className="ml-auto text-gray-400">❯</span>
-            </div>
-          )
-        )}
+        {otherLocation.map((loc, idx) => (
+          <div
+            key={idx}
+            className="bg-white border border-[#E0F7FF] rounded-lg p-4 flex items-center shadow hover:shadow-lg hover:border-[#00AEEF] transition cursor-pointer"
+            onClick={() => handleLocationClick(loc)}
+          >
+            <span className="text-[#00AEEF] text-xl mr-3">📍</span>
+            <span>{loc}</span>
+            <span className="ml-auto text-gray-400">❯</span>
+          </div>
+        ))}
       </div>
     </div>
   );
