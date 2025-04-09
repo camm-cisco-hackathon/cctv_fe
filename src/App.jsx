@@ -1,13 +1,12 @@
 import React from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Sidebar from "./components/Sidebar";
-import Dashboard from "./pages/Dashboard";
+import Dashboard from "./pages/Dashboard"; 
+import Home from "./pages/Home";
 import GroupedLocationList from "./pages/GroupedLocationList";
 import IssuePage from "./pages/IssuePage";
 import LandingPage from "./pages/LandingPage";
-
 import Sender from "./pages/Sender";
-import Viewer from "./components/Viewer";
 
 function App() {
   return (
@@ -19,6 +18,14 @@ function App() {
           element={
             <WithLayout>
               <Dashboard />
+            </WithLayout>
+          }
+        />
+        <Route
+          path="/home"
+          element={
+            <WithLayout>
+              <Home />
             </WithLayout>
           }
         />
@@ -46,20 +53,12 @@ function App() {
             </WithLayout>
           }
         />
-        <Route
-          path="/viewer"
-          element={
-            <WithLayout>
-              <Viewer />
-            </WithLayout>
-          }
-        />
       </Routes>
     </Router>
   );
 }
 
-// Header + Sidebar 있는 페이지용 레이아웃
+// Header + Sidebar 포함 레이아웃
 const WithLayout = ({ children }) => (
   <div className="flex">
     <Sidebar />
