@@ -7,6 +7,11 @@ const Viewer = ({
   const [isConnected, setIsConnected] = useState(false);
   const [currentFrame, setCurrentFrame] = useState(null);
   const [isStreaming, setIsStreaming] = useState(false);
+  const [decryptionKey, setDecryptionKey] = useState("");
+  const [isDecrypting, setIsDecrypting] = useState(false);
+  const [decryptionError, setDecryptionError] = useState(null);
+  const [isDecryptionEnabled, setIsDecryptionEnabled] = useState(false);
+  const [statusMessage, setStatusMessage] = useState("");
   const wsRef = useRef(null);
 
   // connect to websocket server
@@ -31,6 +36,25 @@ const Viewer = ({
         setIsStreaming(false);
       } else if (message.type === "frame_received") {
         console.log(`Frame ${message.frame_number} received by server`);
+      } else if (message.type === "decryption_key_valid") {
+        setIsDecrypting(false);
+        setIsDecryptionEnabled(true);
+        setDecryptionError(null);
+        setStatusMessage("Decryption enabled. Streaming original images.");
+      } else if (message.type === "decryption_key_invalid") {
+        setIsDecrypting(false);
+        setIsDecryptionEnabled(false);
+        setDecryptionError(message.message);
+      } else if (message.type === "decryption_disabled") {
+        setIsDecrypting(false);
+        setIsDecryptionEnabled(false);
+        setStatusMessage("Decryption disabled. Streaming mosaic images.");
+      } else if (message.type === "decryption_error") {
+        console.error("Decryption error:", message.message);
+        setIsDecrypting(false);
+        setIsDecryptionEnabled(false);
+        setDecryptionError(message.message);
+        setStatusMessage("Failed to decrypt. Showing mosaic images.");
       }
     };
 
@@ -38,12 +62,14 @@ const Viewer = ({
       console.log("WebSocket connection closed");
       setIsConnected(false);
       setIsStreaming(false);
+      setIsDecryptionEnabled(false);
     };
 
     ws.onerror = (error) => {
       console.error("WebSocket error:", error);
       setIsConnected(false);
       setIsStreaming(false);
+      setIsDecryptionEnabled(false);
     };
   };
 
@@ -55,6 +81,20 @@ const Viewer = ({
     wsRef.current.send(
       JSON.stringify({
         type: "stream_request",
+      })
+    );
+  };
+
+  // set decryption key
+  const setDecryptionKeyOnServer = () => {
+    if (!isConnected || !decryptionKey) return;
+
+    setIsDecrypting(true);
+    setDecryptionError(null);
+    wsRef.current.send(
+      JSON.stringify({
+        type: "set_decryption_key",
+        key: decryptionKey,
       })
     );
   };
@@ -90,6 +130,28 @@ const Viewer = ({
             ? "Streaming..."
             : "Start Stream"}
         </button>
+
+        <div className="decryption-controls">
+          <input
+            type="password"
+            placeholder="Decryption Key"
+            value={decryptionKey}
+            onChange={(e) => setDecryptionKey(e.target.value)}
+            disabled={!isConnected || isDecrypting}
+          />
+          <button
+            onClick={setDecryptionKeyOnServer}
+            disabled={!isConnected || isDecrypting || !decryptionKey}
+          >
+            {isDecrypting
+              ? "Applying..."
+              : isDecryptionEnabled
+              ? "Change Key"
+              : "Apply Key"}
+          </button>
+          {decryptionError && <div className="error">{decryptionError}</div>}
+          {statusMessage && <div className="status">{statusMessage}</div>}
+        </div>
       </div>
 
       <div className="stream-display">
@@ -100,7 +162,9 @@ const Viewer = ({
             {isConnected
               ? isStreaming
                 ? "Waiting for frames..."
-                : 'Click "Start Stream" to begin'
+                : isDecrypting
+                ? "Applying decryption key..."
+                : 'Click "Start Stream" to begin or enter decryption key'
               : "Connect to server first"}
           </div>
         )}
