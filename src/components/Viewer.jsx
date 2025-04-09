@@ -3,8 +3,9 @@ import { useState, useEffect, useRef } from "react";
 const Viewer = ({
   wsUrl = "ws://localhost:52049/ws",
   streamOnMount = false,
+  isAdmin,
 }) => {
-  const [isConnected, setIsConnected] = useState(false);
+  const [isConnected, setIsConnected] = useState(true);
   const [currentFrame, setCurrentFrame] = useState(null);
   const [isStreaming, setIsStreaming] = useState(false);
   const [decryptionKey, setDecryptionKey] = useState("");
@@ -131,29 +132,30 @@ const Viewer = ({
             : "Start Stream"}
         </button>
 
-        <div className="decryption-controls">
-          <input
-            type="password"
-            placeholder="Decryption Key"
-            value={decryptionKey}
-            onChange={(e) => setDecryptionKey(e.target.value)}
-            disabled={!isConnected || isDecrypting}
-          />
-          <button
-            onClick={setDecryptionKeyOnServer}
-            disabled={!isConnected || isDecrypting || !decryptionKey}
-          >
-            {isDecrypting
-              ? "Applying..."
-              : isDecryptionEnabled
-              ? "Change Key"
-              : "Apply Key"}
-          </button>
-          {decryptionError && <div className="error">{decryptionError}</div>}
-          {statusMessage && <div className="status">{statusMessage}</div>}
-        </div>
+        {isAdmin && (
+          <div className="decryption-controls">
+            <input
+              type="password"
+              placeholder="Decryption Key"
+              value={decryptionKey}
+              onChange={(e) => setDecryptionKey(e.target.value)}
+              disabled={!isConnected || isDecrypting}
+            />
+            <button
+              onClick={setDecryptionKeyOnServer}
+              disabled={!isConnected || isDecrypting || !decryptionKey}
+            >
+              {isDecrypting
+                ? "Applying..."
+                : isDecryptionEnabled
+                ? "Change Key"
+                : "Apply Key"}
+            </button>
+            {decryptionError && <div className="error">{decryptionError}</div>}
+            {statusMessage && <div className="status">{statusMessage}</div>}
+          </div>
+        )}
       </div>
-
       <div className="stream-display">
         {currentFrame ? (
           <img src={currentFrame} alt="Stream frame" />

@@ -5,7 +5,8 @@ import { FiSearch } from "react-icons/fi";
 import { IoIosArrowDown, IoIosArrowForward } from "react-icons/io";
 
 const LocationView = () => {
-  const [selectedLocation, setSelectedLocation] = useState("1202호 앞(우리 집)");
+  const [selectedLocation, setSelectedLocation] =
+    useState("1202호 앞(우리 집)");
   const [viewMode, setViewMode] = useState("list");
   const [visibleCount, setVisibleCount] = useState(1); // 처음에는 1개만 보이기
   const [expandedGroup, setExpandedGroup] = useState("우리 집");
@@ -50,7 +51,9 @@ const LocationView = () => {
             <div key={index}>
               <div
                 className="flex items-center justify-between px-3 py-2 cursor-pointer hover:bg-[#E0F7FF] rounded-md font-semibold text-sm text-[#232f34]"
-                onClick={() => setExpandedGroup(expandedGroup === group ? null : group)}
+                onClick={() =>
+                  setExpandedGroup(expandedGroup === group ? null : group)
+                }
               >
                 <span>{group}</span>
                 {expandedGroup === group ? (
@@ -106,26 +109,29 @@ const LocationView = () => {
         {/* 콘텐츠 영역 */}
         {viewMode === "grid" ? (
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4 w-[80%]">
-           {cameraCount.slice(0, visibleCount).map((i) => (
-  <div
-    key={i}
-    className="bg-white rounded-lg shadow-md overflow-hidden w-full max-w-[400px] self-start"
-  >
-    <div className="bg-[#00AEEF] text-white text-sm font-semibold px-4 py-2">
-      {selectedLocation} - 카메라 {i}
-    </div>
-    <div className="relative bg-black aspect-[16/9] flex items-center justify-center">
-      <Viewer wsUrl="ws://localhost:52049/ws" streamOnMount={false} />
-    </div>
-    <div className="flex items-center justify-between px-4 py-2 text-sm text-gray-500 bg-[#F8FDFF]">
-      <div>{new Date().toLocaleString("ko-KR")}</div>
-      <span className="bg-[#E0F7FF] px-2 py-0.5 rounded-full text-xs font-semibold text-[#00AEEF]">
-        LIVE
-      </span>
-    </div>
-  </div>
-))}
-
+            {cameraCount.slice(0, visibleCount).map((i) => (
+              <div
+                key={i}
+                className="bg-white rounded-lg shadow-md overflow-hidden w-full max-w-[400px] self-start"
+              >
+                <div className="bg-[#00AEEF] text-white text-sm font-semibold px-4 py-2">
+                  {selectedLocation} - 카메라 {i}
+                </div>
+                <div className="relative bg-black aspect-[16/9] flex items-center justify-center">
+                  <Viewer
+                    wsUrl="ws://localhost:52049/ws"
+                    streamOnMount={false}
+                    isAdmin={false}
+                  />
+                </div>
+                <div className="flex items-center justify-between px-4 py-2 text-sm text-gray-500 bg-[#F8FDFF]">
+                  <div>{new Date().toLocaleString("ko-KR")}</div>
+                  <span className="bg-[#E0F7FF] px-2 py-0.5 rounded-full text-xs font-semibold text-[#00AEEF]">
+                    LIVE
+                  </span>
+                </div>
+              </div>
+            ))}
           </div>
         ) : (
           <div className="flex flex-col gap-4">
@@ -138,7 +144,10 @@ const LocationView = () => {
                   {selectedLocation} - 카메라 {i}
                 </div>
                 <div className="relative bg-black aspect-[16/9] flex items-center justify-center">
-                  <Viewer wsUrl="ws://localhost:52049/ws" streamOnMount={false} />
+                  <Viewer
+                    wsUrl="ws://localhost:52049/ws"
+                    streamOnMount={false}
+                  />
                 </div>
                 <div className="flex items-center justify-between px-4 py-2 text-sm text-gray-500 bg-[#F8FDFF]">
                   <div>{new Date().toLocaleString("ko-KR")}</div>
