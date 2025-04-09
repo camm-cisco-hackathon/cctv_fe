@@ -4,9 +4,9 @@ import Search from "../components/SearchComponent";
 
 // 장소별 이미지 import
 import img1202 from "../images/1202.png";
-import imgElevator from "../images/101 elevator.png";
-import imgEntrance from "../images/GateHub 101.png";
-import imgPlayground from "../images/101 playground.png";
+import imgElevator from "../images/101elevator.png";
+import imgEntrance from "../images/GateHub101.png";
+import imgPlayground from "../images/101playground.png";
 import imgRecycling from "../images/recycling.png";
 import imgParking from "../images/parking.png";
 
