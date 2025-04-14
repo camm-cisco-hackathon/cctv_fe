@@ -53,7 +53,7 @@ function App() {
               <AdminView />
             </WithLayout>
           }
-        />{" "}
+        />
         <Route
           path="/admin-view"
           element={

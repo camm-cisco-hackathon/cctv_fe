@@ -9,7 +9,12 @@ const Sidebar = () => {
   return (
     <aside className="w-52 bg-white border-r border-[#E0F7FF] flex flex-col">
       {/* 로고 */}
-      <div className="text-[#00AEEF] font-bold text-2xl px-5 py-3 border-b border-[#E0F7FF]">
+      <div
+        className="text-[#00AEEF] font-bold text-2xl px-5 py-3 border-b border-[#E0F7FF] cursor-pointer"
+        onClick={() => {
+          navigation("/");
+        }}
+      >
         VISI:ON
       </div>
 
@@ -23,28 +28,25 @@ const Sidebar = () => {
           }}
         />
         <MenuItem
-          label="장소"
-          active={location.pathname == "/location"}
+          label="내 장소"
+          active={
+            location.pathname == "/location" ||
+            location.pathname == "/location-view"
+          }
           onClick={() => navigation("/location")}
         />
-        <MenuItem
+        {/* <MenuItem
           label="이슈"
           active={location.pathname == "/issue"}
           onClick={() => navigation("/issue")}
-        />
+        /> */}
         <MenuItem
           label="관리자뷰"
-          active={location.pathname == "/admin"}
+          active={
+            location.pathname == "/admin" || location.pathname == "/admin-view"
+          }
           onClick={() => navigation("/admin")}
         />
-      </div>
-
-      {/* 여백 차지 */}
-      <div className="flex-grow" />
-
-      {/* 하단 메뉴 */}
-      <div className="space-y-1">
-        <MenuItem label="설정" />
       </div>
     </aside>
   );

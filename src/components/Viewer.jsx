@@ -14,8 +14,8 @@ const Viewer = ({
   const [isDecryptionEnabled, setIsDecryptionEnabled] = useState(false);
   const [statusMessage, setStatusMessage] = useState("");
   const wsRef = useRef(null);
-  const [isAdmin, setIsAdmin] = useState(false);
 
+  const [isAdmin, setIsAdmin] = useState(false);
   const location = useLocation();
 
   useEffect(() => {
