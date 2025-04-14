@@ -117,18 +117,22 @@ const GroupedLocationList = () => {
                 .map((loc, idx) => (
                   <div
                     key={idx}
-                    onClick={() => {
-                      Navigate("/location-view");
-                    }}
                     className="w-full aspect-[1/1] bg-[#F8FDFF] hover:bg-blue-50 rounded-lg shadow overflow-hidden flex flex-col"
                   >
                     <img
                       src={loc.image}
                       alt={loc.name}
+                      onClick={() => {
+                        Navigate("/location-view");
+                      }}
                       className="bg-blue-300 w-full aspect-[16/9] object-cover"
                     />
                     <div className="p-4 flex-1 flex flex-col justify-between">
-                      <div>
+                      <div
+                        onClick={() => {
+                          Navigate("/location-view");
+                        }}
+                      >
                         <h4 className="font-semibold mb-1">{loc.name}</h4>
                         <p className="text-sm text-gray-600">{loc.admin}</p>
                       </div>
@@ -159,18 +163,22 @@ const GroupedLocationList = () => {
               {myLocations.map((loc, idx) => (
                 <div
                   key={idx}
-                  onClick={() => {
-                    Navigate("/location-view");
-                  }}
                   className="w-full aspect-[1/1] bg-[#F8FDFF] hover:bg-blue-50 rounded-lg shadow overflow-hidden flex flex-col"
                 >
                   <img
                     src={loc.image}
                     alt={loc.name}
+                    onClick={() => {
+                      Navigate("/location-view");
+                    }}
                     className="bg-blue-300 w-full aspect-[16/9] object-cover"
                   />
                   <div className="p-4 flex-1 flex flex-col justify-between">
-                    <div>
+                    <div
+                      onClick={() => {
+                        Navigate("/location-view");
+                      }}
+                    >
                       <h4 className="font-semibold mb-1">{loc.name}</h4>
                       <p className="text-sm text-gray-600">{loc.admin}</p>
                     </div>
