@@ -70,17 +70,17 @@ const GroupedLocationList = () => {
 
   return (
     <div className="min-h-screen bg-[#F8FDFF] text-[#232f34]">
-      <main className="p-6 flex flex-col">
+      <main className="p-6 flex flex-col gap-5">
         {/* 소개 문구 */}
         <h2 className="text-[#232f34] text-xl font-semibold mb-1">내 장소</h2>
-        <p className="text-sm text-[#5d6c72] mb-8">
+        <p className="text-sm text-[#5d6c72] mb-5">
           <span className="text-[#00AEEF] font-semibold">VISI:ON</span>의
           비식별화 처리를 통해 내 공간에 더욱 쉽게 엑세스하고, <br />내 장소에서
           발생하는 이슈들을 빠르게 확인해보세요.
         </p>
 
         {/* 이슈 */}
-        <section className="bg-white p-4 rounded-xl items-center shadow mb-8">
+        <section className="bg-white p-4 rounded-xl items-center shadow">
           <div className="mb-8">
             <div className="flex items-center">
               <h3 className="text-[#232f34] font-semibold text-base flex items-center bg-transparent border-none">
@@ -106,6 +106,8 @@ const GroupedLocationList = () => {
               ))}
             </div>
           </div>
+        </section>
+        <section className="bg-white p-4 rounded-xl items-center shadow">
           {/* 즐겨찾기 */}
           <div className="mb-8">
             <h3 className="text-[#232f34] font-semibold text-base flex items-center bg-transparent border-none">
@@ -153,7 +155,8 @@ const GroupedLocationList = () => {
                 ))}
             </div>
           </div>
-
+        </section>
+        <section className="bg-white p-4 rounded-xl items-center shadow">
           {/* 전체 장소 */}
           <section className="mb-8">
             <h3 className="text-[#232f34] font-semibold text-base flex items-center bg-transparent border-none">

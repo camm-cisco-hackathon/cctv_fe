@@ -78,44 +78,47 @@ const AdminView = () => {
           </p>
         </section>
 
-        {/* 원본 영상 확인 */}
-        <section className="mb-8">
-          <h3 className="text-[#232f34] font-semibold text-base flex items-center bg-transparent border-none">
-            원본 영상 확인
-          </h3>
-          <Search />
-          <div className="p-4 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4">
-            {myLocations.map((loc, idx) => (
-              <div
-                key={idx}
-                onClick={() => {
-                  Navigate("/admin-view");
-                }}
-                className="w-full aspect-[1/1] bg-[#F8FDFF] hover:bg-blue-50 rounded-lg shadow overflow-hidden flex flex-col"
-              >
-                <img
-                  src={loc.image}
-                  alt={loc.name}
-                  className="w-full aspect-[16/9] object-cover bg-blue-300"
-                />
-                <div className="p-4 flex-1 flex flex-col justify-between">
-                  <div>
-                    <h4 className="font-semibold mb-1">{loc.name}</h4>
-                    <p className="text-sm text-gray-600">{loc.admin}</p>
+        <section className="bg-white p-4 rounded-xl items-center shadow mb-8">
+          {/* 원본 영상 확인 */}
+          <section className="mb-8">
+            <h3 className="text-[#232f34] font-semibold text-base flex items-center bg-transparent border-none">
+              원본 영상 확인
+            </h3>
+            <Search />
+            <div className="p-4 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4">
+              {myLocations.map((loc, idx) => (
+                <div
+                  key={idx}
+                  onClick={() => {
+                    Navigate("/admin-view");
+                  }}
+                  className="w-full aspect-[1/1] bg-[#F8FDFF] hover:bg-blue-50 rounded-lg shadow overflow-hidden flex flex-col"
+                >
+                  <img
+                    src={loc.image}
+                    alt={loc.name}
+                    className="w-full aspect-[16/9] object-cover bg-blue-300"
+                  />
+                  <div className="p-4 flex-1 flex flex-col justify-between">
+                    <div>
+                      <h4 className="font-semibold mb-1">{loc.name}</h4>
+                      <p className="text-sm text-gray-600">{loc.admin}</p>
+                    </div>
                   </div>
                 </div>
-              </div>
-            ))}
+              ))}
+            </div>
+          </section>
+        </section>
+        <section className="bg-white p-4 rounded-xl items-center shadow mb-8">
+          {/* 접근 권한자 확인 */}
+          <div className="flex flex-col gap-1">
+            <h3 className="text-[#232f34] font-semibold text-base flex items-center cursor-pointer bg-transparent border-none">
+              접근 권한자 확인
+            </h3>
+            <AdminTable />
           </div>
         </section>
-
-        {/* 접근 권한자 확인 */}
-        <div className="flex flex-col gap-1">
-          <h3 className="text-[#232f34] font-semibold text-base flex items-center cursor-pointer bg-transparent border-none">
-            접근 권한자 확인
-          </h3>
-          <AdminTable />
-        </div>
       </main>
     </div>
   );
